@@ -6,12 +6,13 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 19:56:38 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/23 20:23:16 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/01/23 20:51:38 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
+#include "mlx.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -45,7 +46,8 @@ int							fdf(char *file_name)
 		if (plain)
 		{
 			print_plain(plain);
-			w = get_window();
+			w = get_window(500, 500, "abc");
+			mlx_loop(w->mlx);
 			return (0);
 		}
 	}

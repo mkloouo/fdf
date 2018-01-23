@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/23 20:25:59 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/01/23 20:42:32 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct			s_window
 	void				*mlx;
 	void				*win;
 }						t_window;
+
+t_window				*get_window(int width, int height, char *title);
 
 /*
 ** Presents user with wireframe representation of points

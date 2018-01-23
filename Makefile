@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/23 18:43:34 by modnosum         ###   ########.fr        #
+#    Updated: 2018/01/23 20:51:03 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,7 +26,8 @@ OBJ_DIR					= ./obj
 INC_DIR					= ./includes
 
 # Adding current include
-LIB_INC					+= -I $(INC_DIR)
+LIB_INC					+= -I $(INC_DIR) -I ./mlx
+LIB_LINK				+= -lmlx -framework OpenGL -framework AppKit
 
 # Target binary name
 NAME					:= fdf

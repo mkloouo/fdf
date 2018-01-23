@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_file.c                                       :+:      :+:    :+:   */
+/*   get_window.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 18:36:42 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/20 19:01:11 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/23 20:27:14 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/23 20:28:10 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include "fdf.h"
 
-int						check_file(char *filename)
+t_window				*get_window(void)
 {
-	int					fd;
-
-	if ((fd = open(filename, O_RDONLY)) == -1)
-	{
-		ft_putendl_fd(strerror(errno), 2);
-		exit(2);
-	}
-	return (fd);
+	static void			*mlx = mlx_init();
 }

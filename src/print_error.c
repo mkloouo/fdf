@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_usage.c                                      :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 18:34:10 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/22 19:52:57 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/22 20:00:31 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/22 20:02:24 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
+#include <string.h>
 
-void					print_usage(char *prog_name, char *usage)
+void					print_error(char *prog_name)
 {
-	ft_putstr("usage: ");
 	ft_putstr(prog_name);
-	ft_putendl(usage);
+	ft_putstr(": ");
+	ft_putendl(strerror(errno));
 }

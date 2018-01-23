@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/20 21:25:47 by modnosum         ###   ########.fr        #
+#    Updated: 2018/01/23 18:43:34 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,15 +17,16 @@ include colors.mk
 
 # Compiler Configuration
 CC						= gcc
-CFLAGS					= -Wall -Wextra -Werror -pedantic -std=c99
-
-CLIBFLAGS				= $(LIB_LK) $(LIB_INC) -I $(INC_DIR)
-CFLAGS					+= $(CLIBFLAGS)
+CFLAGS					= -Wall -Wextra -Werror -pedantic -std=c99\
+						-fsanitize=address
 
 # Directories
 SRC_DIR					= ./src
 OBJ_DIR					= ./obj
 INC_DIR					= ./includes
+
+# Adding current include
+LIB_INC					+= -I $(INC_DIR)
 
 # Target binary name
 NAME					:= fdf
@@ -36,7 +37,7 @@ OBJ						:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
 INC						:= $(shell find $(INC_DIR) -type f -name "*.h")
 
 # Phony rules
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re norm c f n
 
 # Named rules
 all:
@@ -44,10 +45,12 @@ all:
 	@$(MAKE) $(NAME)  --no-print-directory
 clean:
 	@rm -fR $(OBJ_DIR)
-	@echo -e $(call CARG1, $(RED), "[$(NAME)] delete obj directory.")
+	@echo $(call CARG1, $(RED), "[$(NAME)] delete obj directory.")
+	@$(MAKE) -C $(FT_PATH) clean
 fclean: clean
 	@rm -fR $(NAME)
-	@echo -e $(call CARG1, $(RED), "[$(NAME)] delete binary.")
+	@echo $(call CARG1, $(RED), "[$(NAME)] delete binary.")
+	@$(MAKE) -C $(FT_PATH) fclean
 re:
 	@$(MAKE) -C $(FT_PATH) fclean --no-print-directory
 	@$(MAKE) fclean  --no-print-directory
@@ -55,13 +58,18 @@ re:
 norm: $(SRC) $(INC)
 	@norminette $^
 
+# Shortcuts
+c: clean
+f: fclean
+n: norm
+
 # Variable rules
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo -e $(call CARG1, $(MAGENTA), "[$(NAME)] Start compilation.")
+	@echo $(call CARG1, $(BLUE), "[$(NAME)] Start compilation.")
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) -o $@ -c $< $(CFLAGS)
-	@echo -e $(call CARG2, $(MAGENTA), "[$(NAME)] Compiling: ", $(CYAN), $<)
-$(NAME): $(OBJ)
-	@$(CC) -o $@ $^ $(CFLAGS)
-	@echo -e $(call CARG1, $(MAGENTA), "[$(NAME)] Binary complete.")
+	@$(CC) -o $@ -c $< $(CFLAGS) $(LIB_INC)
+	@echo $(call CARG2, $(BLUE), "[$(NAME)] Compiling: ", $(CYAN), $<)
+$(NAME): $(OBJ) $(FT_PATH)/libft.a
+	@$(CC) -o $@ $^ $(CFLAGS) $(LIB_INC) $(LIB_LINK)
+	@echo $(call CARG1, $(BLUE), "[$(NAME)] Binary complete.")

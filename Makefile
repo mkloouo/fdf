@@ -6,53 +6,56 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/24 17:40:51 by modnosum         ###   ########.fr        #
+#    Updated: 2018/01/24 22:04:05 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
-
-# Ft library import
-FT_PATH					:= ./libft
-include $(FT_PATH)/Libft.mk
-include colors.mk
-
-# Mlx library import
-MLX_PATH				:= ./mlx
-MLX_NAME				:= libmlx.a
 
 # Compiler Configuration
 CC						= gcc
 CFLAGS					= -Wall -Wextra -Werror -pedantic -fsanitize=address
 
-# Directories
-SRC_DIR					= ./src
-OBJ_DIR					= ./obj
-INC_DIR					= ./includes
-
-# Adding current include
-LIB_INC					+= -I $(INC_DIR) -I $(MLX_PATH)
-LIB_LINK				+= -L $(MLX_PATH) -l mlx -framework OpenGL -framework AppKit
+# Make Flags
+MFLAGS					= --no-print-directory -C
 
 # Target binary name
 NAME					:= fdf
 
+# Directories
+SRC_DIR					= ./sources
+OBJ_DIR					= ./objects
+INC_DIR					= ./includes
+
+# Dependencies
+FT_PATH					:= ./libft
+include $(FT_PATH)/Libft.mk
+include $(FT_PATH)/Coloring.mk
+ifeq ($(UNAME),Linux)
+	MLX_PATH				:= ./mlx
+else ifeq ($(UNAME),Darwin)
+	MLX_PATH				:= ./mlx_sierra
+endif
+MLX						:= libmlx.a
+
+# Include and Linkage Flags
+IFLAGS					+= -I $(INC_DIR) -I $(MLX_PATH)
+LFLAGS					+= -L $(MLX_PATH) -l mlx \
+ifeq ($(UNAME),Linux)
+							-l Xext -l X11
+else ifeq ($(UNAME),Darwin)
+							-framework OpenGL -framework AppKit
+endif
+
 # Source and object lists
-SRC						:= $(shell find $(SRC_DIR) -type f -name "*.c")
-OBJ						:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
-INC						:= $(shell find $(INC_DIR) -type f -name "*.h")
+SRCS					:= $(shell find $(SRC_DIR) -type f -name "*.c")
+OBJS					:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
 
 # Phony rules
-.PHONY: all clean fclean re norm c f n
+.PHONY: all clean fclean re c f
 
 # Named rules
-all:
-	@echo Includes: [$(LIB_INC)]
-	@echo Linkage: [$(LIB_LINK)]
-	@$(MAKE) -C $(FT_PATH) all --no-print-directory
-	@$(MAKE) $(NAME)  --no-print-directory
+all: $(MLX) $(FT_NAME) $(NAME)
 clean:
-	@rm -fR $(OBJ_DIR)
-	@echo $(call CARG1, $(RED), "[$(NAME)] delete obj directory.")
-	@$(MAKE) -C $(FT_PATH) clean
+	@$(MAKE) $()
 fclean: clean
 	@rm -fR $(NAME)
 	@echo $(call CARG1, $(RED), "[$(NAME)] delete binary.")

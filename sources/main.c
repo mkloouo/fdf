@@ -6,7 +6,7 @@
 /*   By: modnosum <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 13:32:25 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 16:33:46 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/01/26 20:07:30 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int						main(int ac, char **av)
 {
 	if (ac != 2)
-		print_usage("./fdf", " <filename>");
+		print_usage();
 	else
 		return (fdf(av[1]));
 	return (1);

@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/26 19:33:11 by modnosum         ###   ########.fr        #
+#    Updated: 2018/01/26 20:07:00 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,7 +32,6 @@ OBJS					:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRCS:.c=.o))
 # Add outside variables
 FT_PATH					:= ./libft
 include $(FT_PATH)/Libft.mk
-MLX_PATH				:= ./mlx_sierra
 include Mlx.mk
 
 # Modify flags a bit

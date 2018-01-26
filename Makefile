@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/24 22:04:05 by modnosum         ###   ########.fr        #
+#    Updated: 2018/01/26 16:27:15 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,68 +25,56 @@ SRC_DIR					= ./sources
 OBJ_DIR					= ./objects
 INC_DIR					= ./includes
 
-# Dependencies
-FT_PATH					:= ./libft
-include $(FT_PATH)/Libft.mk
-include $(FT_PATH)/Coloring.mk
-ifeq ($(UNAME),Linux)
-	MLX_PATH				:= ./mlx
-else ifeq ($(UNAME),Darwin)
-	MLX_PATH				:= ./mlx_sierra
-endif
-MLX						:= libmlx.a
-
-# Include and Linkage Flags
-IFLAGS					+= -I $(INC_DIR) -I $(MLX_PATH)
-LFLAGS					+= -L $(MLX_PATH) -l mlx \
-ifeq ($(UNAME),Linux)
-							-l Xext -l X11
-else ifeq ($(UNAME),Darwin)
-							-framework OpenGL -framework AppKit
-endif
-
 # Source and object lists
 SRCS					:= $(shell find $(SRC_DIR) -type f -name "*.c")
-OBJS					:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
+OBJS					:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRCS:.c=.o))
+
+# Add outside variables
+FT_PATH					:= ./libft
+include $(FT_PATH)/Libft.mk
+MLX_PATH				:= ./mlx_sierra
+include Mlx.mk
+
+# Modify flags a bit
+IFLAGS					+= -I $(INC_DIR)
 
 # Phony rules
 .PHONY: all clean fclean re c f
 
+# Coloring
+include Coloring.mk 
+
 # Named rules
-all: $(MLX) $(FT_NAME) $(NAME)
+all: $(MLX_NAME) $(FT_NAME) $(NAME)
 clean:
-	@$(MAKE) $()
+	@rm -fR $(OBJ_DIR)
+	@rm -fR $(MLX_NAME)
+	@rm -fR $(FT_NAME)
+	$(call PRINT,$(MAGENTA),"Removed $(OBJ_DIR), $(MLX_NAME), $(FT_NAME).")
 fclean: clean
 	@rm -fR $(NAME)
-	@echo $(call CARG1, $(RED), "[$(NAME)] delete binary.")
-	@$(MAKE) -C $(FT_PATH) fclean
-re:
-	@$(MAKE) -C $(FT_PATH) fclean --no-print-directory
-	@$(MAKE) fclean  --no-print-directory
-	@$(MAKE) all  --no-print-directory
-norm: $(SRC) $(IpNC)
-	@norminette $^
+	@$(MAKE) $(MFLAGS) $(FT_PATH) fclean
+	@$(MAKE) $(MFLAGS) $(MLX_PATH) clean
+	$(call PRINT,$(MAGENTA),"Removed $(NAME).")
+re: fclean all
+
+# Variable rules
+$(NAME): $(OBJS)
+	@$(CC) -o $@ $^ $(CFLAGS) $(IFLAGS) $(LFLAGS)
+	$(call PRINT,$(GREEN),"Build $@.")
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c | $(OBJ_DIR)
+	@$(CC) -o $@ -c $< $(CFLAGS) $(IFLAGS)
+	$(call PRINT,$(BLUE),"$< ->",$(GREEN),"$@")
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	$(call PRINT,$(BLUE),"Create $@ directory")
+$(FT_NAME): $(FT_DEP)
+	@$(MAKE) -C $(FT_PATH)
+	@cp $(FT_PATH)/$@ ./$@
+$(MLX_NAME): $(MLX_DEP)
+	@$(MAKE) $(MFLAGS) $(MLX_PATH)
+	@cp $(MLX_PATH)/$@ ./$@
 
 # Shortcuts
 c: clean
 f: fclean
-n: norm
-
-# Variable rules
-
-$(NAME): $(FT_NAME) $(MLX_NAME) $(OBJ)
-	@$(CC) -o $@ $^ $(CFLAGS) $(LIB_INC) $(LIB_LINK)
-	@echo $(call CARG1, $(BLUE), "[$(NAME)] Binary complete.")
-
-$(FT_NAME):
-	@$(MAKE) -C $(FT_PATH)
-
-$(MLX_NAME):
-	@$(MAKE) -C $(MLX_PATH)
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-	@echo $(call CARG1, $(BLUE), "[$(NAME)] Start compilation.")
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) -o $@ -c $< $(CFLAGS) $(LIB_INC)
-	@echo $(call CARG2, $(BLUE), "[$(NAME)] Compiling: ", $(CYAN), $<)

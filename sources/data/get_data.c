@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 18:59:35 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:00:24 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-
-# include <errno.h>
+# include <data.h>
 # include <ft.h>
-# include <plain.h>
 
-typedef struct			s_fdf
+t_data					*get_data(t_point3 *p, int color)
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
+	t_data				*d;
 
-int						fdf(char *file);
-
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
-
-#endif
+	if ((d = (t_data*)ft_memalloc(sizeof(t_data))))
+	{
+		d->p = p;
+		d->color = color;
+	}
+	return (d);
+}

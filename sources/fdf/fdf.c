@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/22 19:56:38 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 20:00:50 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include <fdf.h>
 
-# include <errno.h>
-# include <ft.h>
-# include <plain.h>
-
-typedef struct			s_fdf
+int							fdf(char *file)
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
+	t_fdf					*f;
 
-int						fdf(char *file);
-
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
-
-#endif
+	f = init_fdf(file, get_plain(file));
+	if (!f)
+		print_error();
+	else
+		print_plain(f->plain);
+	return (0);
+}

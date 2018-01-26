@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 20:00:31 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/22 20:02:24 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/20 18:34:10 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:59:58 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <string.h>
+#include <fdf.h>
 
-void					print_error(char *prog_name)
+void					print_usage(void)
 {
-	ft_putstr(prog_name);
-	ft_putstr(": ");
-	ft_putendl(strerror(errno));
+	ft_putendl_fd("usage: fdf <filename>", 2);
 }

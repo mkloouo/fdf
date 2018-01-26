@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_plain.c                                     :+:      :+:    :+:   */
+/*   init_plain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 22:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/23 15:16:25 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 17:12:37 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:29:27 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <plain.h>
+#include <ft.h>
 
-static void				del_list_elem(void *content, size_t size)
+t_plain					*init_plain(t_list *data_list, size_t width, size_t height)
 {
-	if (content)
-	{
-		ft_bzero(content, size);
-		ft_memdel(&content);
-	}
-}
+	t_plain				*p;
 
-void					delete_plain(t_plain **pp)
-{
-	if (pp)
+	if ((p = (t_plain*)ft_memalloc(sizeof(t_plain))))
 	{
-		ft_lstdel(&((*pp)->points), del_list_elem);
-		ft_memdel((void**)pp);
+		p->data_list = data_list;
+		p->width = width;
+		p->height = height;
 	}
+	return (p);
 }

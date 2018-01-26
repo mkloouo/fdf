@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 18:56:43 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:18:59 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef DATA_H
+# define DATA_H
 
-# include <errno.h>
-# include <ft.h>
-# include <plain.h>
+# include <point.h>
 
-typedef struct			s_fdf
+typedef struct			s_data
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
+	t_point3			*p;
+	int					color;
+}						t_data;
 
-int						fdf(char *file);
+t_data					*get_data(t_point3 *p, int color);
 
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
+void					set_data(t_data *d, t_point3 *p, int color);
 
 #endif

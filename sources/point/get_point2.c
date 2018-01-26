@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   get_point2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 17:09:15 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:30:09 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include <point.h>
+#include <ft.h>
 
-# include <errno.h>
-# include <ft.h>
-# include <plain.h>
-
-typedef struct			s_fdf
+t_point2				*get_point2(double x, double y)
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
+	t_point2			*p;
 
-int						fdf(char *file);
-
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
-
-#endif
+	if ((p = (t_point2*)ft_memalloc(sizeof(t_point2))))
+	{
+		p->x = x;
+		p->y = y;
+	}
+	return (p);
+}

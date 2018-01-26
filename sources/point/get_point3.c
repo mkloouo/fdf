@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_usage.c                                      :+:      :+:    :+:   */
+/*   get_point3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 18:34:10 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/22 19:52:57 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 17:10:21 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:30:16 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "libft.h"
+#include <point.h>
+#include <ft.h>
 
-void					print_usage(char *prog_name, char *usage)
+t_point3				*get_point3(double x, double y, double z)
 {
-	ft_putstr("usage: ");
-	ft_putstr(prog_name);
-	ft_putendl(usage);
+	t_point3			*p;
+
+	if ((p = (t_point3*)ft_memalloc(sizeof(t_point3))))
+	{
+		p->x = x;
+		p->y = y;
+		p->z = z;
+	}
+	return (p);
 }

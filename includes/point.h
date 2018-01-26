@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   point.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 17:04:23 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 18:43:19 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef POINT_H
+# define POINT_H
 
-# include <errno.h>
-# include <ft.h>
-# include <plain.h>
-
-typedef struct			s_fdf
+typedef struct			s_point2
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
+	double				x;
+	double				y;
+}						t_point2;
 
-int						fdf(char *file);
+typedef struct			s_point3
+{
+	double				x;
+	double				y;
+	double				z;
+}						t_point3;
 
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
+t_point2				*get_point2(double x, double y);
+t_point3				*get_point3(double x, double y, double z);
 
-void					print_usage(void);
-void					print_error(void);
+void					set_point2(t_point2 *p, double x, double y);
+void					set_point3(t_point3 *p, double x, double y, double z);
 
 #endif

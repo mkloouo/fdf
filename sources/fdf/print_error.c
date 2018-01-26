@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/22 20:00:31 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:59:50 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include <fdf.h>
+#include <string.h>
 
-# include <errno.h>
-# include <ft.h>
-# include <plain.h>
-
-typedef struct			s_fdf
+void					print_error(void)
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
-
-int						fdf(char *file);
-
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
-
-#endif
+	ft_putstr_fd("fdf: ", 2);
+	ft_putendl_fd((errno == 0)
+				  ? ("Unknow error")
+				  : (strerror(errno)), 2);
+}

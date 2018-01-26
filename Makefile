@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/26 16:27:15 by modnosum         ###   ########.fr        #
+#    Updated: 2018/01/26 19:33:11 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -62,12 +62,12 @@ re: fclean all
 $(NAME): $(OBJS)
 	@$(CC) -o $@ $^ $(CFLAGS) $(IFLAGS) $(LFLAGS)
 	$(call PRINT,$(GREEN),"Build $@.")
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(CFLAGS) $(IFLAGS)
 	$(call PRINT,$(BLUE),"$< ->",$(GREEN),"$@")
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-	$(call PRINT,$(BLUE),"Create $@ directory")
+	@mkdir -p $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(shell find $(SRC_DIR) -type d))
+	$(call PRINT,$(BLUE),"Created $@ directory.")
 $(FT_NAME): $(FT_DEP)
 	@$(MAKE) -C $(FT_PATH)
 	@cp $(FT_PATH)/$@ ./$@

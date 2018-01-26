@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   plain.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/01/26 17:00:15 by modnosum          #+#    #+#             */
+/*   Updated: 2018/01/26 19:47:47 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef PLAIN_H
+# define PLAIN_H
 
-# include <errno.h>
+# include <string.h>
 # include <ft.h>
-# include <plain.h>
+# include <data.h>
 
-typedef struct			s_fdf
+typedef struct			s_plain
 {
-	void				*mlx;
-	void				*win;
-	void				*img;
-	char				*data;
-	t_plain				*plain;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_fdf;
+	t_list				*data_list;
+	size_t				width;
+	size_t				height;
+}						t_plain;
 
-int						fdf(char *file);
+t_plain					*init_plain(t_list *data_list, size_t width, size_t height);
+t_plain					*get_plain(char *file);
 
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
+void					delete_plain(t_plain **pp);
+void					print_plain(t_plain *p);
 
 #endif

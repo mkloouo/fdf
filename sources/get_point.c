@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_point.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 11:16:46 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/13 12:38:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 14:33:29 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 14:34:57 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int						main(int ac, char **av)
+t_point					*get_point(double x, double y, double z, int color)
 {
-	t_prog				*p;
-	
-    if (ac != 2)
-	{
-		print_usage(av[0]);
-		return (1);
-	}
-	if ((p = parse_arg(av[2])))
-		init_prog_hooks(p);
-    return (0);
-}
+	t_point				*p;
 
+	if ((p = (t_point*)ft_memalloc(sizeof(t_point))))
+	{
+		p->x = x;
+		p->y = y;
+		p->z = z;
+		p->color = color;
+	}
+	return (p);
+}

@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_prog_hooks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 11:16:46 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/13 12:38:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 12:38:52 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 12:39:11 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int						main(int ac, char **av)
+void					init_prog_hooks(t_prog *p)
 {
-	t_prog				*p;
-	
-    if (ac != 2)
-	{
-		print_usage(av[0]);
-		return (1);
-	}
-	if ((p = parse_arg(av[2])))
-		init_prog_hooks(p);
-    return (0);
+	(void)p;
 }
-

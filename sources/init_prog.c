@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 11:16:46 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/13 12:38:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 12:17:18 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 12:22:02 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+#include <mlx.h>
 
-int						main(int ac, char **av)
+t_prog					*init_prog(void)
 {
 	t_prog				*p;
-	
-    if (ac != 2)
-	{
-		print_usage(av[0]);
-		return (1);
-	}
-	if ((p = parse_arg(av[2])))
-		init_prog_hooks(p);
-    return (0);
-}
 
+	if ((p = (t_prog*)ft_memalloc(sizeof(t_prog))))
+	{
+		p->mlx = mlx_init();
+		p->win = mlx_new_window(p->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_TITLE);
+		p->img = mlx_new_image(p->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		p->img_data = mlx_get_data_addr(p->img, &p->bpp, &p->size_line, &p->endian);
+		p->plain = NULL;
+	}
+	return (p);
+}

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 11:16:46 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/13 12:38:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 12:16:16 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 14:38:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int						main(int ac, char **av)
+t_prog					*parse_arg(char *file)
 {
 	t_prog				*p;
-	
-    if (ac != 2)
-	{
-		print_usage(av[0]);
-		return (1);
-	}
-	if ((p = parse_arg(av[2])))
-		init_prog_hooks(p);
-    return (0);
-}
 
+	if ((p = init_prog()))
+		if ((p->plain = read_plain_from_file(open_file(file, FILE_READ))))
+			destroy_prog(&p);
+	return (p);
+}

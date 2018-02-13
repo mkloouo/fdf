@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 11:10:30 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/13 14:34:14 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:41:03 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include <libft.h>
+# include <errno.h>
 
 # define DEFAULT_WIDTH 600
 # define DEFAULT_HEIGHT 600
@@ -49,10 +50,10 @@ typedef struct			s_point
 
 void					print_usage(char *program_name);
 t_prog					*parse_arg(char *file);
-t_plain					*read_plain_from_file(int fd);
-void					init_prog_hooks(t_prog *p);
+t_plain					*read_plain_from_file(char *file);
+void					init_hooks(t_prog *p);
 
-t_prog					*init_prog(void);
+t_prog					*init_prog(t_plain *pl);
 t_plain					*get_plain(t_list *points, int width, int height);
 t_point					*get_point(double x, double y, double z, int color);
 
@@ -60,6 +61,6 @@ void					destroy_prog(t_prog **pp);
 void					destroy_plain(t_plain **pp);
 void					destroy_point(void *point, size_t point_size);
 
-void					exit_malloc(void);
+void					error_exit(char *program_name);
 
 #endif

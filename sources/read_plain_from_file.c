@@ -6,11 +6,12 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 14:02:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/13 14:38:50 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:43:28 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+#include <stdio.h>
 
 static char				**validate_data(t_plain *p, char *line)
 {
@@ -58,23 +59,23 @@ static void				add_data(t_plain *p, char **data)
 	}
 }
 
-t_plain					*read_plain_from_file(int fd)
+static void				helper_read(t_plain *p, int fd)
+{
+	
+}
+
+t_plain					*read_plain_from_file(char *file)
 {
 	t_plain				*p;
-	char				*line;
-	char				**data;
+	int					fd;
 
 	if ((p = get_plain(NULL, 0, 0)))
 	{
-		while (get_next_line(fd, &line) > 0)
-		{
-			if (!(data = validate_data(p, line)))
-				break ;
-			add_data(p, data);
-		}
-		ft_lstrev(&p->points);
-		if (data == NULL)
-			destroy_plain(&p);
+		fd = open_file(file, FILE_READ);
+		if (fd == -1)
+			error_exit("Error");
+		
+		close_file(fd);
 	}
 	return (p);
 }

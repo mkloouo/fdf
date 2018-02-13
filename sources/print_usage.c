@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_plain.c                                       :+:      :+:    :+:   */
+/*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 17:12:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:29:27 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 11:59:10 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 12:09:18 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
-#include <ft.h>
+#include <fdf.h>
 
-t_plain					*init_plain(t_list *data_list, size_t width, size_t height)
+void					print_usage(char *program_name)
 {
-	t_plain				*p;
-
-	if ((p = (t_plain*)ft_memalloc(sizeof(t_plain))))
-	{
-		p->data_list = data_list;
-		p->width = width;
-		p->height = height;
-	}
-	return (p);
+	ft_putstr("usage:\n");
+	ft_putstr(program_name);
+	ft_putendl(" FILE");
 }

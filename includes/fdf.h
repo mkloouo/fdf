@@ -5,35 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:55:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 19:58:18 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 11:10:30 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 12:08:51 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <errno.h>
-# include <ft.h>
-# include <plain.h>
+# include <libft.h>
 
-typedef struct			s_fdf
+typedef struct			s_plain
+{
+	t_list				*points;
+	int					width;
+	int					height;
+}						t_plain;
+
+typedef struct			s_prog
 {
 	void				*mlx;
 	void				*win;
 	void				*img;
-	char				*data;
-	t_plain				*plain;
+	char				*img_data;
 	int					bpp;
 	int					size_line;
 	int					endian;
-}						t_fdf;
+	t_plain				*plain;
+}						t_prog;
+typedef struct			s_point
+{
+	double				x;
+	double				y;
+	double				z;
+	int					color;
+}						t_point;
 
-int						fdf(char *file);
-
-t_fdf					*init_fdf(char *plain_name, t_plain *plain);
-
-void					print_usage(void);
-void					print_error(void);
+void					print_usage(char *program_name);
 
 #endif

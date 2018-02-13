@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/01/26 20:07:00 by modnosum         ###   ########.fr        #
+#    Updated: 2018/02/13 12:04:33 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,11 +49,13 @@ clean:
 	@rm -fR $(OBJ_DIR)
 	@rm -fR $(MLX_NAME)
 	@rm -fR $(FT_NAME)
-	$(call PRINT,$(MAGENTA),"Removed $(OBJ_DIR), $(MLX_NAME), $(FT_NAME).")
+	$(call PRINT,$(MAGENTA),"Removed $(OBJ_DIR) $(MLX_NAME) $(FT_NAME).")
 fclean: clean
 	@rm -fR $(NAME)
 	@$(MAKE) $(MFLAGS) $(FT_PATH) fclean
+ifdef MLX_PATH
 	@$(MAKE) $(MFLAGS) $(MLX_PATH) clean
+endif
 	$(call PRINT,$(MAGENTA),"Removed $(NAME).")
 re: fclean all
 
@@ -71,8 +73,10 @@ $(FT_NAME): $(FT_DEP)
 	@$(MAKE) -C $(FT_PATH)
 	@cp $(FT_PATH)/$@ ./$@
 $(MLX_NAME): $(MLX_DEP)
+ifeq (1,$(MLX_NEED_COMPILE))
 	@$(MAKE) $(MFLAGS) $(MLX_PATH)
 	@cp $(MLX_PATH)/$@ ./$@
+endif
 
 # Shortcuts
 c: clean

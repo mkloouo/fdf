@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modnosum <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 13:32:25 by modnosum          #+#    #+#             */
-/*   Updated: 2018/01/26 20:07:30 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/13 11:16:46 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/13 12:09:05 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 int						main(int ac, char **av)
 {
-	if (ac != 2)
-		print_usage();
-	else
-		return (fdf(av[1]));
-	return (1);
+	t_prog				*p;
+	
+    if (ac != 2)
+	{
+		print_usage(av[0]);
+		return (1);
+	}
+	(void)p;
+	/* if ((p = parse_arg(av[2]))) */
+	/* 	start_drawing(p); */
+	/* else */
+	/* 	close_program(&p, av[1]); */
+    return (0);
 }
+

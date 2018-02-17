@@ -70,7 +70,7 @@ $(OBJ_DIR):
 	@mkdir -p $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(shell find $(SRC_DIR) -type d))
 	$(call PRINT,$(BLUE),"Created $@ directory.")
 $(FT_NAME): $(FT_DEP)
-	@$(MAKE) -C $(FT_PATH)
+	@$(MAKE) $(MFLAGS) $(FT_PATH)
 	@cp $(FT_PATH)/$@ ./$@
 $(MLX_NAME): $(MLX_DEP)
 ifeq (1,$(MLX_NEED_COMPILE))

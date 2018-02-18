@@ -67,7 +67,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(CFLAGS) $(IFLAGS)
 	$(call PRINT,$(BLUE),"$< ->",$(GREEN),"$@")
 $(OBJ_DIR):
-	@mkdir -p $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(shell find $(SRC_DIR) -type d))
+	@mkdir -p $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%,$(shell find $(SRC_DIR) -type d))
 	$(call PRINT,$(BLUE),"Created $@ directory.")
 $(FT_NAME): $(FT_DEP)
 	@$(MAKE) $(MFLAGS) $(FT_PATH)

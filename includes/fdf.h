@@ -14,16 +14,18 @@
 # define FDF_H
 
 # include <plain.h>
+# include <image.h>
 
 typedef struct			s_fdf
 {
 	void				*mlx;
 	void				*window;
-	void				*image;
-	char				*image_data;
-	int					bpp;
-	int					line_size;
-	int					endian;
+	t_image				*img;
+	t_plain				*plain;
 }						t_fdf;
+
+
+t_fdf					*get_fdf(t_plain *plain);
+void					start_fdf(t_fdf *fdf);
 
 #endif

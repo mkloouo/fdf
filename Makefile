@@ -12,7 +12,7 @@
 
 # Compiler Configuration
 CC						= gcc
-CFLAGS					= -Wall -Wextra -Werror -pedantic -fsanitize=address
+CFLAGS					= -Wall -Wextra -Werror -pedantic
 
 # Make Flags
 MFLAGS					= --no-print-directory -C
@@ -60,7 +60,7 @@ endif
 re: fclean all
 
 # Variable rules
-$(NAME): $(OBJS)
+$(NAME): $(MLX_NAME) $(FT_NAME) $(OBJS)
 	@$(CC) -o $@ $^ $(CFLAGS) $(IFLAGS) $(LFLAGS)
 	$(call PRINT,$(GREEN),"Build $@.")
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)

@@ -11,5 +11,3 @@ void					print_point_el(t_list *point_el)
 	else
 		printf("no point\n");
 }
-
-//0509847881 (риелтор Наташа)

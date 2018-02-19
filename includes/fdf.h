@@ -20,12 +20,13 @@ typedef struct			s_fdf
 {
 	void				*mlx;
 	void				*window;
-	t_image				*img;
+	t_image				*image;
 	t_plain				*plain;
 }						t_fdf;
 
-
 t_fdf					*get_fdf(t_plain *plain);
 void					start_fdf(t_fdf *fdf);
+
+void					redraw(t_fdf *fdf);
 
 #endif

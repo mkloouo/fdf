@@ -1,7 +1,9 @@
 
 #include <hooks.h>
 #include <libft.h>
-#include <drawing.h>
+#include <image.h>
+#include <fdf.h>
+#include <mlx.h>
 
 int						mouse_hook(int button, int x, int y, void *fdf)
 {
@@ -13,7 +15,8 @@ int						mouse_hook(int button, int x, int y, void *fdf)
 	ft_putstr(" Y:");
 	ft_putnbr(y);
 	ft_putchar('\n');
-	put_pixel(x, y, 0xFFFFFFFF, (t_fdf*)fdf);
-	(void)fdf;
+	unsigned int color = mlx_get_color_value(((t_fdf*)fdf)->mlx, 0x00FFFFFF);
+	put_pixel(((t_fdf*)(fdf))->image, x, y, color);
+	redraw((t_fdf*)fdf);
 	return (0);
 }

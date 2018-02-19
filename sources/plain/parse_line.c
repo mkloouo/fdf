@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/19 17:16:45 by modnosum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <plain.h>
 #include <point.h>
@@ -28,7 +39,8 @@ t_plain					*parse_line(t_plain *plain, char *line)
 	int					i;
 	int					len;
 
-	len = get_len_and_validate((data = ft_strsplit(line, ' ')), plain);
+	len = get_len_and_validate(
+		(data = ft_strsplit(line, ' ')), plain);
 	if ((i = 0) == 0 && len == -1)
 		delete_plain(&plain, 1);
 	while (data[i] && plain != NULL)

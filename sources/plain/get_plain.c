@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_plain.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/19 17:11:41 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/19 17:16:17 by modnosum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <fdf.h>
 
@@ -5,10 +16,11 @@ static t_list			*copy_point_el(t_list *point_el)
 {
 	t_list				*copy;
 
+	copy = NULL;
 	if (point_el)
 	{
 		copy = ft_lstnew(point_el->content,
-						 point_el->content_size);
+							point_el->content_size);
 	}
 	return (copy);
 }

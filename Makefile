@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/02/13 12:04:33 by modnosum         ###   ########.fr        #
+#    Updated: 2018/02/19 17:08:22 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -60,8 +60,8 @@ endif
 re: fclean all
 
 # Variable rules
-$(NAME): $(MLX_NAME) $(FT_NAME) $(OBJS)
-	@$(CC) -o $@ $^ $(CFLAGS) $(IFLAGS) $(LFLAGS)
+$(NAME): $(OBJS)
+	@$(CC) -o $@ $^ *.a $(CFLAGS) $(IFLAGS) $(LFLAGS)
 	$(call PRINT,$(GREEN),"Build $@.")
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(CFLAGS) $(IFLAGS)

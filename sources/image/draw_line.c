@@ -30,7 +30,7 @@ static int				*init_data(t_point *p1, t_point *p2)
 	int					x;
 	int					y;
 
-	if ((data = (int*)ft_memalloc(sizeof(int) * 10)))
+	if ((data = (int*)ft_memalloc(sizeof(int) * 9)))
 	{
 		data[0] = fabs(p2->x - p1->x);
 		data[1] = fabs(p2->y - p1->y);
@@ -50,52 +50,30 @@ static int				*init_data(t_point *p1, t_point *p2)
 		data[6] = (data[1] - data[0]) << 1;
 		data[7] = x + data[2];
 		data[8] = y;
-		data[9] = 1;
 	}
 	return (data);
 }
 
 void					draw_line(t_image *img, t_point *p1, t_point *p2)
 {
-	int dx = fabs(p2->x - p1->x);
-	int dy = fabs(p2->y - p1->y);
-	int sx = p2->x >= p1->x ? 1 : -1;
-	int sy = p2->y >= p1->y ? 1 : -1;
+	int				*data;
+	int				i;
 
-	if (dy <= dx)
+	if ((data = init_data(p1, p2)))
 	{
-		int d = (dy << 1) - dx;
-		int d1 = dy << 1;
-		int d2 = (dy - dx) << 1;
+		i = 1;
 		put_pixel(img, p1->x, p1->y, p1->color);
-		for(int x = p1->x + sx, y = p1->y, i = 1; i <= dx; i++, x += sx)
+		while (i <= data[0])
 		{
-			if ( d >0)
+			if (data[4] > 0)
 			{
-				d += d2;
-				y += sy;
+				data[4] += data[6];
+				data[8] += data[3];
 			}
 			else
-				d += d1;
-			put_pixel(img, x, y, p1->color);
+				data[4] = data[5];
+			put_pixel(img, data[7], data[8], p1->color);
 		}
-	}
-	else
-	{
-		int d = (dx << 1) - dy;
-		int d1 = dx << 1;
-		int d2 = (dx - dy) << 1;
-		put_pixel(img, p1->x, p1->y, p1->color);
-		for(int y = p1->y + sy, x = p1->x, i = 1; i <= dy; i++, y += sy)
-		{
-			if ( d >0)
-			{
-				d += d2;
-				x += sx;
-			}
-			else
-				d += d1;
-			put_pixel(img, x, y, p1->color);
-		}
+		ft_memdel((void**)&data);
 	}
 }

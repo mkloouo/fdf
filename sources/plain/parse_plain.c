@@ -6,11 +6,12 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:50 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:11:50 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:57:50 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+#include <stdio.h>
 
 t_plain					*parse_plain(t_plain *plain, int fd)
 {

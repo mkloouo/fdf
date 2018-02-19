@@ -6,13 +6,14 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:31 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:15:35 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:11:41 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
 #include <libft.h>
 #include <mlx.h>
+#include <stdio.h>
 
 t_image					*get_image(void *mlx, int width, int height)
 {
@@ -20,11 +21,16 @@ t_image					*get_image(void *mlx, int width, int height)
 
 	if ((i = (t_image*)ft_memalloc(sizeof(t_image))))
 	{
+		i->mlx = mlx;
 		i->width = width;
 		i->height = height;
+		i->local_endian = 0x11223344;
+		i->local_endian = (((unsigned char*)&i->local_endian)[0] == 0x11)
+			? (1)
+			: (0);
 		i->image = mlx_new_image(mlx, width, height);
 		i->image_data = mlx_get_data_addr(i->image, &i->bpp,
-											&i->line_size, &i->endian);
+											&i->sl, &i->endian);
 	}
 	return (i);
 }

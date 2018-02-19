@@ -6,13 +6,14 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:15:46 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/19 18:54:44 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
 #include <fdf.h>
 #include <stdio.h>
+#include <errno.h>
 
 int						main(int ac, char **av)
 {
@@ -24,18 +25,18 @@ int						main(int ac, char **av)
 		plain = get_plain_from_file(av[1]);
 		if (plain == NULL)
 		{
-			ft_putendl("Invalid plain");
+			perror("fdf");
 			return (2);
 		}
 		fdf = get_fdf(plain);
 		if (fdf == NULL)
 		{
-			perror("Error");
+			perror("fdf");
 			return (3);
 		}
 		start_fdf(fdf);
 		return (0);
 	}
-	ft_putendl("usage: fdf FILE_NAME");
+	ft_putendl("usage: fdf map_file");
 	return (1);
 }

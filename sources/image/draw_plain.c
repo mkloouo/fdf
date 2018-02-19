@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_color.c                                        :+:      :+:    :+:   */
+/*   draw_plain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:11:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:19:25 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/19 19:12:21 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/19 19:46:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
+#include <image.h>
+#include <mlx.h>
+#include <stdio.h>
 
-int						get_color(char *color_line)
+void					draw_plain(void *mlx, t_image *i, t_plain *p)
 {
-	char				*c_spec;
+	t_list				*l;
+	t_point				*point;
+	int					color;
 
-	if ((c_spec = ft_strchr(color_line, ',')))
-		return (ft_atoi(c_spec + 1));
-	return (0x00FFFFFF);
+	l = p->points;
+	while (l)
+	{
+		point = (t_point*)l->content;
+		color = mlx_get_color_value(mlx, point->color);
+		put_pixel(i, point->x, point->y, color);
+		l = l->next;
+	}
 }

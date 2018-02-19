@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   mouse_motion_hook.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:17:40 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:08:59 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/19 17:49:23 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/19 17:53:57 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#include <hooks.h>
+#include <image.h>
+#include <mlx.h>
+#include <fdf.h>
 
-# define MOTION_NOTIFY 6
-# define MOUSE_MOTION_MASK 1L<<6
+int						mouse_motion_hook(int x, int y, void *fdf)
+{
+	unsigned int		color;
 
-int						keyboard_hook(int keycode, void *fdf);
-int						mouse_release_hook(int button, int x, int y, void *fdf);
-int						mouse_motion_hook(int x, int y, void *fdf);
-int						expose_hook(void *fdf);
-
-#endif
+	color = mlx_get_color_value(((t_fdf*)(fdf))->mlx, 0x00FFFFFF);
+	put_pixel(((t_fdf*)(fdf))->image, x, y, color);
+	redraw((t_fdf*)fdf);
+	return (0);
+}

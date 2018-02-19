@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   expose_hook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:17:40 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:08:59 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/19 19:09:08 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/19 19:17:03 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#include <hooks.h>
+#include <image.h>
+#include <fdf.h>
 
-# define MOTION_NOTIFY 6
-# define MOUSE_MOTION_MASK 1L<<6
+int						expose_hook(void *fdf)
+{
+	t_fdf				*f;
 
-int						keyboard_hook(int keycode, void *fdf);
-int						mouse_release_hook(int button, int x, int y, void *fdf);
-int						mouse_motion_hook(int x, int y, void *fdf);
-int						expose_hook(void *fdf);
-
-#endif
+	f = (t_fdf*)fdf;
+	draw_plain(f->mlx, f->image, f->plain);
+	redraw((t_fdf*)f);
+	return (0);
+}

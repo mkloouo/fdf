@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keycodes.h                                         :+:      :+:    :+:   */
+/*   keyboard.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:17:06 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:17:31 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/19 17:19:47 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYCODES_H
-# define KEYCODES_H
+#ifndef KEYBOARD_H
+# define KEYBOARD_H
 
 # if defined(__APPLE__)
 

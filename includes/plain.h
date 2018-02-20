@@ -15,11 +15,12 @@
 
 # include <libft.h>
 
-# define DEFAULT_X_ROT 90
-# define DEFAULT_Y_ROT 45
-# define DEFAULT_Z_ROT 90
+# define DEFAULT_X_ROT 60
+# define DEFAULT_Y_ROT -40
+# define DEFAULT_Z_ROT -10
 
 # define DEFAULT_STEP 1
+# define DEFAULT_Z_SCALE 10
 
 typedef struct			s_plain
 {
@@ -30,6 +31,7 @@ typedef struct			s_plain
 	int					mx;
 	int					my;
 	int					step;
+	int					z_scale;
 	int					rotx;
 	int					roty;
 	int					rotz;
@@ -42,6 +44,7 @@ t_plain					*parse_line(t_plain *plain, char *line);
 void					move_plain(t_plain *plain, int button);
 void					zoom_plain(t_plain *plain, int button);
 void					rotate_plain(t_plain *plain, int button);
+void					z_scale_plain(t_plain *plain, int button);
 
 int						get_color(char *color_line);
 int						get_best_width(t_plain *plain);

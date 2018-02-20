@@ -6,27 +6,22 @@
 
 static t_point2			*convert_to_2d(t_point3 *c, t_plain *plain, int i, int j)
 {
-	float				x_rad;
-	float				y_rad;
-	float				z_rad;
-	t_point3			p1;
+	float				rx;
+	float				ry;
+	float				rz;
+	t_point3			d;
 	t_point2			*p;
 
-	x_rad = plain->rotx * M_PI / 180.0;
-	y_rad = plain->roty * M_PI / 180.0;
-	z_rad = plain->rotz * M_PI / 180.0;
-	p1.x = c->x + (j * plain->step) + plain->mx;
-	p1.y = c->y + (i * plain->step) + plain->my;
-	p1.z = c->z + plain->step;
-	p = get_point2((p1.x * cos(y_rad) - p1.z * cos(x_rad) - p1.y *
-		sin(x_rad) * sin(y_rad) * cos(z_rad) + p1.y *
-		cos(x_rad) + p1.z * sin(x_rad) *
-		sin(z_rad) * cos(z_rad) + p1.y *
-		cos(x_rad) + p1.z * sin(x_rad) * sin(z_rad)),
-				   (p1.y * cos(x_rad) + p1.z * sin(x_rad) *
-		cos(z_rad) + p1.x * cos(y_rad) - p1.z *
-		cos(x_rad) - p1.y * sin(x_rad) *
-		sin(y_rad) * sin(z_rad)), c->color);
+	rx = plain->rotx * (float)(M_PI / 180.0);
+	ry = plain->roty * (float)(M_PI / 180.0);
+	rz = plain->rotz * (float)(M_PI / 180.0);
+	set_point3(&d, c->x + (j * plain->step),
+			   c->y + (i * plain->step), c->z * plain->z_scale);
+	p = get_point2((((d.x) * cos(ry) - (d.z * cos(rx) - d.y * sin(rx)) * sin(ry))
+					* cos(rz) + (d.y * cos(rx) + d.z * sin(rx)) * sin(rz)),
+				   (((d.y * cos(rx) + d.z * sin(rx))) * cos(rx) -
+					((d.x) * cos(ry) - (d.z * cos(rx) - d.y * sin(rx)) *
+					 sin(ry)) * sin(rz)), c->color);
 	return (p);
 }
 
@@ -36,6 +31,7 @@ static void				draw_links(t_image *image, t_plain *plain,
 	t_point2			*mid;
 	t_point2			*r;
 	t_point2			*d;
+	int					i;
 
 	mid = NULL;
 	r = NULL;
@@ -44,13 +40,27 @@ static void				draw_links(t_image *image, t_plain *plain,
 	{
 		mid = convert_to_2d((t_point3*)cur->content, plain, pos.x, pos.y);
 		if ((pos.y + 1) < (plain->width))
-			r = convert_to_2d((t_point3*)cur->content, plain, pos.x, pos.y + 1);
+		{
+			r = convert_to_2d((t_point3*)cur->next->content, plain, pos.x, pos.y + 1);
+		}
 		if ((pos.x + 1) < (plain->height))
+		{
+			i = 0;
+			while (i++ < plain->width)
+				cur = cur->next;
 			d = convert_to_2d((t_point3*)cur->content, plain, pos.x + 1, pos.y);
-		if (mid && r)
+		}
+		set_point2(mid, mid->x + plain->mx, mid->y + plain->my);
+		if (r)
+		{
+			set_point2(r, r->x + plain->mx, r->y + plain->my);
 			draw_line(image, mid, r);
-		if (mid && d)
+		}
+		if (d)
+		{
+			set_point2(d, d->x + plain->mx, d->y + plain->my);
 			draw_line(image, mid, d);
+		}
 		delete_point2(&mid);
 		delete_point2(&r);
 		delete_point2(&d);

@@ -5,11 +5,14 @@
 # include <plain.h>
 # include <image.h>
 
-# define DEFAULT_WINDOW_WIDTH 500
-# define DEFAULT_WINDOW_HEIGHT 500
+# define DEFAULT_WINDOW_WIDTH 800
+# define DEFAULT_WINDOW_HEIGHT 600
 
-# define MIN_WINDOW_WIDTH 300
-# define MIN_WINDOW_HEIGHT 300
+# define MIN_WINDOW_WIDTH 800
+# define MIN_WINDOW_HEIGHT 600
+
+# define MAX_WINDOW_WIDTH 1920
+# define MAX_WINDOW_HEIGHT 1080
 
 typedef struct			s_ds
 {

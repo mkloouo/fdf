@@ -44,6 +44,7 @@ t_plain					*get_plain(t_list *lst, char *file, int width, int height)
 		p->roty = DEFAULT_Y_ROT;
 		p->rotz = DEFAULT_Z_ROT;
 		p->step = DEFAULT_STEP;
+		p->z_scale = DEFAULT_Z_SCALE;
 	}
 	return (p);
 }

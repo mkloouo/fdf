@@ -81,10 +81,16 @@
 # define ROTATE_Z(B) (ROTATE_Z_M(B) || ROTATE_Z_P(B))
 	
 # define ROTATE_BUTTON(B) (ROTATE_X(B) || ROTATE_Y(B) || ROTATE_Z(B))
-	
+
+# define Z_SCALE_P(B) (B == E_KEYCODE)
+# define Z_SCALE_M(B) (B == Q_KEYCODE)
+
+# define Z_SCALE(B) (Z_SCALE_P(B) || Z_SCALE_M(B))
+
 # define QUIT_BUTTON(B) (B == ESC_KEYCODE)
 
 int						key_press_hook(int button, t_ds *ds);
 int						key_release_hook(int button, t_ds *ds);
+void					handle_key(int button, t_ds *ds);
 
 #endif

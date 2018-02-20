@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
-#include <stdio.h>
+#include <plain.h>
 
 t_plain					*parse_plain(t_plain *plain, int fd)
 {

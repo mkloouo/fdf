@@ -21,11 +21,10 @@ t_image					*get_image(void *mlx, int width, int height)
 
 	if ((i = (t_image*)ft_memalloc(sizeof(t_image))))
 	{
-		i->mlx = mlx;
 		i->width = width;
 		i->height = height;
-		i->local_endian = 0x11223344;
-		i->local_endian = (((unsigned char*)&i->local_endian)[0] == 0x11)
+		i->lendian = 0x11223344;
+		i->lendian = (((unsigned char*)&i->lendian)[0] == 0x11)
 			? (1)
 			: (0);
 		i->image = mlx_new_image(mlx, width, height);

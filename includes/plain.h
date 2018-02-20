@@ -15,20 +15,39 @@
 
 # include <libft.h>
 
+# define DEFAULT_X_ROT 90
+# define DEFAULT_Y_ROT 45
+# define DEFAULT_Z_ROT 90
+
+# define DEFAULT_STEP 1
+
 typedef struct			s_plain
 {
 	t_list				*points;
+	char				*file;
 	int					width;
 	int					height;
+	int					mx;
+	int					my;
+	int					step;
+	int					rotx;
+	int					roty;
+	int					rotz;
 }						t_plain;
 
 t_plain					*get_plain_from_file(char *file_name);
 t_plain					*parse_plain(t_plain *plain, int fd);
 t_plain					*parse_line(t_plain *plain, char *line);
 
-int						get_color(char *color_line);
+void					move_plain(t_plain *plain, int button);
+void					zoom_plain(t_plain *plain, int button);
+void					rotate_plain(t_plain *plain, int button);
 
-t_plain					*get_plain(t_list *lst, int width, int height);
+int						get_color(char *color_line);
+int						get_best_width(t_plain *plain);
+int						get_best_height(t_plain *plain);
+
+t_plain					*get_plain(t_list *lst, char *file, int width, int height);
 void					delete_plain(t_plain **pp, char need_reverse);
 void					print_plain(t_plain *plain);
 

@@ -25,4 +25,17 @@
 
 # endif
 
+# define MOUSE_BUTTON_PRESS 4
+# define MOUSE_BUTTON_PRESS_MASK (1L << 2)
+
+# define MOUSE_BUTTON_RELEASE 5
+# define MOUSE_BUTTON_RELEASE_MASK (1L << 3)
+
+# include <ds.h>
+
+int						mouse_button_press_hook(int button, int x, int y,
+												t_ds *ds);
+int						mouse_button_release_hook(int button, int x, int y,
+													t_ds *ds);
+
 #endif

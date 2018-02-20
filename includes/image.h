@@ -18,22 +18,24 @@
 
 typedef struct			s_image
 {
-	void				*mlx;
 	void				*image;
 	char				*image_data;
 	int					bpp;
 	int					sl;
 	int					endian;
+	int					lendian;
 	int					width;
 	int					height;
-	int					local_endian;
 }						t_image;
 
 t_image					*get_image(void *mlx, int width, int height);
+void					delete_image(void *mlx, t_image **ip);
 
-void					draw_plain(void *mlx, t_image *i, t_plain *p);
+void					put_image(void *mlx, void *window, t_image *image,
+									t_point2 pos);
 
-void					put_pixel(t_image *i, int x, int y, unsigned int color);
-void					draw_line(t_image *i, t_point *p1, t_point *p2);
+void					redraw_plain(t_plain *plain, t_image *image);
+void					put_pixel(t_image *image, int x, int y, unsigned int c);
+void					draw_line(t_image *image, t_point2 *p1, t_point2 *p2);
 
 #endif

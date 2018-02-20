@@ -10,16 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
-#include <fdf.h>
+#include <ds.h>
 #include <stdio.h>
 #include <errno.h>
 
 int						main(int ac, char **av)
 {
 	t_plain				*plain;
-	t_fdf				*fdf;
-
+	t_ds				*ds;
+	
 	if (ac == 2)
 	{
 		plain = get_plain_from_file(av[1]);
@@ -28,13 +27,15 @@ int						main(int ac, char **av)
 			perror("fdf");
 			return (2);
 		}
-		fdf = get_fdf(plain);
-		if (fdf == NULL)
+		ds = get_ds(plain, av[0]);
+		if (ds == NULL)
 		{
+			delete_plain(&plain, 0);
 			perror("fdf");
 			return (3);
 		}
-		start_fdf(fdf);
+		start_loop(ds);
+		delete_ds(&ds);
 		return (0);
 	}
 	ft_putendl("usage: fdf map_file");

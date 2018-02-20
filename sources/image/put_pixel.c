@@ -12,25 +12,26 @@
 
 #include <image.h>
 
-void					put_pixel(t_image *i, int x, int y, unsigned int color)
+void					put_pixel(t_image *image, int x, int y, unsigned int c)
 {
-	int					c;
+	int					opp;
 	int					temp;
 	char				*p;
 
-	if (x >= 0 && x < i->width && y >= 0 && y < i->height && i)
+	if (x >= 0 && x < image->width &&
+		y >= 0 && y < image->height && image)
 	{
-		c = i->bpp / 8;
-		temp = c;
-		p = (i->image_data + y * i->sl);
-		while (c--)
+		opp = image->bpp / 8;
+		temp = opp;
+		p = (image->image_data + (int)y * image->sl);
+		while (opp--)
 		{
-			if (i->endian == i->local_endian)
-				*(p + x * temp + c) = ((unsigned char *)(&color))[
-					((i->endian) ? (4 - temp + c) : (c))];
+			if (image->endian == image->lendian)
+				*(p + (int)x * temp + opp) = ((unsigned char *)(&c))[
+					((image->endian) ? (4 - temp + opp) : (opp))];
 			else
-				*(p + x * temp + c) = ((unsigned char *)(&color))[
-					((i->endian) ? (temp - 1 - c) : (3 - c))];
+				*(p + (int)x * temp + opp) = ((unsigned char *)(&c))[
+					((image->endian) ? (temp - 1 - opp) : (3 - opp))];
 		}
 	}
 }

@@ -36,6 +36,7 @@ include Mlx.mk
 
 # Modify flags a bit
 IFLAGS					+= -I $(INC_DIR)
+LFLAGS					+= -lm
 
 # Phony rules
 .PHONY: all clean fclean re c f

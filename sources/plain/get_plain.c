@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
+#include <plain.h>
 
 static t_list			*copy_point_el(t_list *point_el)
 {
@@ -25,7 +25,7 @@ static t_list			*copy_point_el(t_list *point_el)
 	return (copy);
 }
 
-t_plain					*get_plain(t_list *lst, int width, int height)
+t_plain					*get_plain(t_list *lst, char *file, int width, int height)
 {
 	t_plain				*p;
 
@@ -35,8 +35,15 @@ t_plain					*get_plain(t_list *lst, int width, int height)
 			p->points = ft_lstmap(lst, &copy_point_el);
 		else
 			p->points = NULL;
+		p->file = file;
 		p->width = width;
 		p->height = height;
+		p->mx = 0;
+		p->my = 0;
+		p->rotx = DEFAULT_X_ROT;
+		p->roty = DEFAULT_Y_ROT;
+		p->rotz = DEFAULT_Z_ROT;
+		p->step = DEFAULT_STEP;
 	}
 	return (p);
 }

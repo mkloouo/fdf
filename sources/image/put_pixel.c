@@ -6,32 +6,32 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:33 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:43:57 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 00:00:10 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
 
-void					put_pixel(t_image *image, int x, int y, unsigned int c)
+void					put_pixel(t_image *img, t_vec2 *v)
 {
 	int					opp;
 	int					temp;
 	char				*p;
 
-	if (x >= 0 && x < image->width &&
-		y >= 0 && y < image->height && image)
+	if (v->x >= 0 && v->x < img->w &&
+		v->y >= 0 && v->y < img->h && img)
 	{
-		opp = image->bpp / 8;
+		opp = img->bpp / 8;
 		temp = opp;
-		p = (image->image_data + (int)y * image->sl);
+		p = (img->imgd + (int)v->y * img->sl);
 		while (opp--)
 		{
-			if (image->endian == image->lendian)
-				*(p + (int)x * temp + opp) = ((unsigned char *)(&c))[
-					((image->endian) ? (4 - temp + opp) : (opp))];
+			if (img->end == img->lend)
+				*(p + (int)v->x * temp + opp) = ((unsigned char *)(&v->c))[
+					((img->end) ? (4 - temp + opp) : (opp))];
 			else
-				*(p + (int)x * temp + opp) = ((unsigned char *)(&c))[
-					((image->endian) ? (temp - 1 - opp) : (3 - opp))];
+				*(p + (int)v->x * temp + opp) = ((unsigned char *)(&v->c))[
+					((img->end) ? (temp - 1 - opp) : (3 - opp))];
 		}
 	}
 }

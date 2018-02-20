@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_plain.c                                      :+:      :+:    :+:   */
+/*   set_vec3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:11:50 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:07:09 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:24:45 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/20 22:25:01 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
+#include <vector.h>
 
-t_plain					*parse_plain(t_plain *pln, int fd)
+void					set_vec3(t_vec3 *v, float x, float y, float z)
 {
-	char				*line;
-	int					rt;
-
-	while ((rt = get_next_line(fd, &line)) > 0)
+	if (v)
 	{
-		pln = parse_line(pln, line);
-		ft_strdel(&line);
-		if (pln == NULL)
-			break ;
+		v->x = x;
+		v->y = y;
+		v->z = z;
 	}
-	if (rt == 1)
-		while (get_next_line(fd, &line) > 0)
-			ft_strdel(&line);
-	else if (rt == -1)
-		del_plain(&pln, 1);
-	return (pln);
 }

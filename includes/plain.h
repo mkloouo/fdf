@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:18:09 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 01:20:24 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,43 @@
 
 # include <libft.h>
 
-# define DEFAULT_X_ROT 60
-# define DEFAULT_Y_ROT -40
-# define DEFAULT_Z_ROT -10
-
-# define DEFAULT_STEP 1
-# define DEFAULT_Z_SCALE 10
+# define DEFAULT_X_ROTATE -45
+# define DEFAULT_Y_ROTATE -130
+# define DEFAULT_Z_ROTATE 45
+# define DEFAULT_SCALE 10
+# define DEFAULT_POSITION 10
+# define DEFAULT_COLOR 0x00FFFFFF
 
 typedef struct			s_plain
 {
-	t_list				*points;
-	char				*file;
-	int					width;
-	int					height;
-	int					mx;
-	int					my;
-	int					step;
-	int					z_scale;
-	int					rotx;
-	int					roty;
-	int					rotz;
+	t_list				*vecl;
+	int					w;
+	int					h;
+	int					sx;
+	int					sy;
+	int					sz;
+	int					px;
+	int					py;
+	int					rx;
+	int					ry;
+	int					rz;
 }						t_plain;
 
-t_plain					*get_plain_from_file(char *file_name);
-t_plain					*parse_plain(t_plain *plain, int fd);
-t_plain					*parse_line(t_plain *plain, char *line);
+t_plain					*get_plain_from_file(char *file);
+t_plain					*parse_plain(t_plain *pln, int fd);
+t_plain					*parse_line(t_plain *pln, char *line);
+int						parse_color(char *data);
 
-void					move_plain(t_plain *plain, int button);
-void					zoom_plain(t_plain *plain, int button);
-void					rotate_plain(t_plain *plain, int button);
-void					z_scale_plain(t_plain *plain, int button);
+void					position_plain(t_plain *pln, int btn);
+void					rotate_plain(t_plain *pln, int btn);
+void					scale_plain(t_plain *pln, int btn);
 
-int						get_color(char *color_line);
-int						get_best_width(t_plain *plain);
-int						get_best_height(t_plain *plain);
+t_plain					*get_plain(t_list *l, int w, int h);
+void					del_plain(t_plain **pp, char to_reverse);
+void					print_plain(t_plain *pln);
 
-t_plain					*get_plain(t_list *lst, char *file, int width, int height);
-void					delete_plain(t_plain **pp, char need_reverse);
-void					print_plain(t_plain *plain);
+t_list					*get_vec_el(float x, float y, float z, int c);
+void					print_vec_el(t_list *vec_el);
+void					del_vec_el(void *vec_el, size_t size);
 
 #endif

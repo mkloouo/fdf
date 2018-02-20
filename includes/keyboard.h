@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:19:47 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 01:09:51 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,82 +15,94 @@
 
 # if defined(__APPLE__)
 
-#  define ESC_KEYCODE 53
-#  define Q_KEYCODE 12
+#  define ESC_KC 53
+#  define Q_KC 12
 
 # elif defined(__linux__)
 
-#  define ESC_KEYCODE 65307
+#  define ESC_KC 65307
 
-#  define W_KEYCODE 119
-#  define A_KEYCODE 97
-#  define S_KEYCODE 115
-#  define D_KEYCODE 100
+#  define Q_KC 113
+#  define W_KC 119
+#  define E_KC 101
+#  define R_KC 114
+#  define T_KC 116
+#  define Y_KC 121
+#  define A_KC 97
+#  define S_KC 115
+#  define D_KC 100
+#  define F_KC 102
+#  define G_KC 103
+#  define H_KC 104
 
-#  define R_KEYCODE 114
-#  define F_KEYCODE 102
+#  define UP_ARR_KC 65362
+#  define LEFT_ARR_KC 65361
+#  define DOWN_ARR_KC 65364
+#  define RIGHT_ARR_KC 65363
 
-#  define Q_KEYCODE 113
-#  define E_KEYCODE 101
+#  define NUM_P_KC 65451
+#  define NUM_M_KC 65453
 
-#  define UP_ARROW_KEYCODE 65362
-#  define LEFT_ARROW_KEYCODE 65361
-#  define DOWN_ARROW_KEYCODE 65364
-#  define RIGHT_ARROW_KEYCODE 65363
-
-#  define NUMLOCK_PLUS_KEYCODE 65451
-#  define NUMLOCK_MINUX_KEYCODE 65453
-
-# define NUMLOCK_7_KEYCODE 65429
-# define NUMLOCK_8_KEYCODE 65431
-# define NUMLOCK_4_KEYCODE 65430
-# define NUMLOCK_5_KEYCODE 65437
-# define NUMLOCK_1_KEYCODE 65436
-# define NUMLOCK_2_KEYCODE 65433
+#  define NUM_7_KC 65429
+#  define NUM_8_KC 65431
+#  define NUM_4_KC 65430
+#  define NUM_5_KC 65437
+#  define NUM_1_KC 65436
+#  define NUM_2_KC 65433
 
 # endif
 
-# include <ds.h>
+# include <env.h>
 
 # define KEY_RELEASE 3
 # define KEY_RELEASE_MASK (1L << 1)
 # define KEY_PRESS 2
 # define KEY_PRESS_MASK (1L << 0)
 
-# define ZOOM_IN(B) (B == NUMLOCK_PLUS_KEYCODE || B == R_KEYCODE)
-# define ZOOM_OUT(B) (B == NUMLOCK_MINUX_KEYCODE || B == F_KEYCODE)
-# define ZOOM_BUTTON(B) (ZOOM_IN(B) || ZOOM_OUT(B))
+# define QUIT_BUTTON(B) (B == ESC_KC)
 
-# define MOVE_UP(B) (B == W_KEYCODE || B == UP_ARROW_KEYCODE)
-# define MOVE_LEFT(B) (B == A_KEYCODE || B == LEFT_ARROW_KEYCODE)
-# define MOVE_DOWN(B) (B == S_KEYCODE || B == DOWN_ARROW_KEYCODE)
-# define MOVE_RIGHT(B) (B == D_KEYCODE || B == RIGHT_ARROW_KEYCODE)
-# define MOVE_HORIZONTAL(B) (MOVE_LEFT(B) || MOVE_RIGHT(B))
-# define MOVE_VERTICAL(B) (MOVE_UP(B) || MOVE_DOWN(B))
-# define MOVE_BUTTON(B) (MOVE_HORIZONTAL(B) || MOVE_VERTICAL(B))
+# define POSITION_UP(B) (B == UP_ARR_KC)
+# define POSITION_LEFT(B) (B == LEFT_ARR_KC)
+# define POSITION_DOWN(B) (B == DOWN_ARR_KC)
+# define POSITION_RIGHT(B) (B == RIGHT_ARR_KC)
 
-# define ROTATE_X_M(B) (B == NUMLOCK_7_KEYCODE)
-# define ROTATE_X_P(B) (B == NUMLOCK_8_KEYCODE)
-# define ROTATE_Y_M(B) (B == NUMLOCK_4_KEYCODE)
-# define ROTATE_Y_P(B) (B == NUMLOCK_5_KEYCODE)
-# define ROTATE_Z_M(B) (B == NUMLOCK_1_KEYCODE)
-# define ROTATE_Z_P(B) (B == NUMLOCK_2_KEYCODE)
+# define POSITION_HORIZONTAL(B) (POSITION_LEFT(B) || POSITION_RIGHT(B))
+# define POSITION_VERTICAL(B) (POSITION_UP(B) || POSITION_DOWN(B))
 
-# define ROTATE_X(B) (ROTATE_X_M(B) || ROTATE_X_P(B))
-# define ROTATE_Y(B) (ROTATE_Y_M(B) || ROTATE_Y_P(B))
-# define ROTATE_Z(B) (ROTATE_Z_M(B) || ROTATE_Z_P(B))
-	
+# define POSITION_BUTTON(B) (POSITION_HORIZONTAL(B) || POSITION_VERTICAL(B))
+
+# define ROTATE_X_P(B) (B == A_KC)
+# define ROTATE_X_M(B) (B == S_KC)
+# define ROTATE_Y_P(B) (B == D_KC)
+# define ROTATE_Y_M(B) (B == F_KC)
+# define ROTATE_Z_P(B) (B == G_KC)
+# define ROTATE_Z_M(B) (B == H_KC)
+
+# define ROTATE_X(B) (ROTATE_X_P(B) || ROTATE_X_M(B))
+# define ROTATE_Y(B) (ROTATE_Y_P(B) || ROTATE_Y_M(B))
+# define ROTATE_Z(B) (ROTATE_Z_P(B) || ROTATE_Z_M(B))
+
 # define ROTATE_BUTTON(B) (ROTATE_X(B) || ROTATE_Y(B) || ROTATE_Z(B))
 
-# define Z_SCALE_P(B) (B == E_KEYCODE)
-# define Z_SCALE_M(B) (B == Q_KEYCODE)
+# define SCALE_X_P(B) (B == Q_KC)
+# define SCALE_X_M(B) (B == W_KC)
+# define SCALE_Y_P(B) (B == E_KC)
+# define SCALE_Y_M(B) (B == R_KC)
+# define SCALE_Z_P(B) (B == T_KC)
+# define SCALE_Z_M(B) (B == Y_KC)
 
-# define Z_SCALE(B) (Z_SCALE_P(B) || Z_SCALE_M(B))
+# define SCALE_X(B) (SCALE_X_P(B) || SCALE_X_M(B))
+# define SCALE_Y(B) (SCALE_Y_P(B) || SCALE_Y_M(B))
+# define SCALE_Z(B) (SCALE_Z_P(B) || SCALE_Z_M(B))
 
-# define QUIT_BUTTON(B) (B == ESC_KEYCODE)
+# define ZOOM_IN(B) (B == NUM_P_KC)
+# define ZOOM_OUT(B) (B == NUM_M_KC)
+# define ZOOM(B) (ZOOM_IN(B) || ZOOM_OUT(B))
 
-int						key_press_hook(int button, t_ds *ds);
-int						key_release_hook(int button, t_ds *ds);
-void					handle_key(int button, t_ds *ds);
+# define SCALE_BUTTON(B) (SCALE_X(B) || SCALE_Y(B) || SCALE_Z(B) || ZOOM(B))
+
+int						key_press_hook(int btn, t_env *env);
+int						key_release_hook(int btn, t_env *env);
+void					handle_key(int btn, t_env *env);
 
 #endif

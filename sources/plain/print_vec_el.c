@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_vec_el.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:23:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:53:06 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 00:13:38 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
+#include <vector.h>
+#include <libft.h>
 #include <stdio.h>
-#include <errno.h>
 
-int						main(int ac, char **av)
+void					print_vec_el(t_list *vec_el)
 {
-	t_plain				*pln;
-	t_env				*env;
-	
-	if (ac == 2)
-	{
-		pln = get_plain_from_file(av[1]);
-		if (pln == NULL)
-		{
-			perror("fdf");
-			return (2);
-		}
-		env = init_env(pln);
-		if (env == NULL)
-		{
-			del_plain(&pln, 0);
-			perror("fdf");
-			return (3);
-		}
-		start_env(env);
-		return (0);
-	}
-	ft_putendl("usage: fdf map_file");
-	return (1);
+	t_vec3				*p;
+
+	if (vec_el && (p = (t_vec3*)vec_el->content))
+		printf("(%.1f %.1f %.1f) %#x\n", p->x, p->y, p->z, p->c);
+	else
+		printf("no vec\n");
 }

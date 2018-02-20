@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key.c                                       :+:      :+:    :+:   */
+/*   scale_plain.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:20:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 01:22:16 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 23:21:02 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 01:08:51 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <plain.h>
 #include <keyboard.h>
 
-void					handle_key(int btn, t_env *env)
+void					scale_plain(t_plain *pln, int btn)
 {
-	if (QUIT_BUTTON(btn))
-		del_env(&env);
-	else if (POSITION_BUTTON(btn))
+	if (ZOOM(btn))
 	{
-		position_plain(env->pln, btn);
-		update_env(env);
-		print_plain(env->pln);
+		pln->sx += ZOOM_IN(btn) ? (1) : (-1);
+		pln->sy += ZOOM_IN(btn) ? (1) : (-1);
 	}
-	else if (ROTATE_BUTTON(btn))
-	{
-		rotate_plain(env->pln, btn);
-		update_env(env);
-		print_plain(env->pln);
-	}
-	else if (SCALE_BUTTON(btn))
-	{
-		scale_plain(env->pln, btn);
-		update_env(env);
-		print_plain(env->pln);
-	}
+	else if (SCALE_X(btn))
+		pln->sx += SCALE_X_P(btn) ? (1) : (-1);
+	else if (SCALE_Y(btn))
+		pln->sy += SCALE_Y_P(btn) ? (1) : (-1);
+	else if (SCALE_Z(btn))
+		pln->sz += SCALE_Z_P(btn) ? (1) : (-1);
 }

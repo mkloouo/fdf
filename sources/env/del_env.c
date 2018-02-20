@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   del_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:23:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:28:06 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/20 23:30:50 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
-#include <stdio.h>
-#include <errno.h>
+#include <stdlib.h>
+#include <mlx.h>
 
-int						main(int ac, char **av)
+void					del_env(t_env **ep)
 {
-	t_plain				*pln;
-	t_env				*env;
-	
-	if (ac == 2)
-	{
-		pln = get_plain_from_file(av[1]);
-		if (pln == NULL)
-		{
-			perror("fdf");
-			return (2);
-		}
-		env = init_env(pln);
-		if (env == NULL)
-		{
-			del_plain(&pln, 0);
-			perror("fdf");
-			return (3);
-		}
-		start_env(env);
-		return (0);
-	}
-	ft_putendl("usage: fdf map_file");
-	return (1);
+	del_plain(&(*ep)->pln, 0);
+	del_image((*ep)->mlx, &(*ep)->img);
+	mlx_destroy_window((*ep)->mlx, (*ep)->win);
+	ft_memdel((void**)ep);
+	exit(0);
 }

@@ -6,25 +6,25 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:44 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:00:11 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/20 22:54:39 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
 
-t_plain					*get_plain_from_file(char *file_name)
+t_plain					*get_plain_from_file(char *file)
 {
-	t_plain				*plain;
+	t_plain				*pln;
 	int					fd;
 
-	if ((plain = get_plain(NULL, file_name, 0, 0)))
+	if ((pln = get_plain(NULL, 0, 0)))
 	{
-		fd = open_file(file_name, FILE_READ);
-		plain = parse_plain(plain, fd);
-		if (plain != NULL && plain->points != NULL)
-			ft_lstrev(&(plain->points));
+		fd = open_file(file, FILE_READ);
+		pln = parse_plain(pln, fd);
+		if (pln != NULL && pln->vecl != NULL)
+			ft_lstrev(&(pln->vecl));
 		if (fd != -1)
 			close_file(fd);
 	}
-	return (plain);
+	return (pln);
 }

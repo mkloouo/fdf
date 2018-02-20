@@ -6,14 +6,14 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:16:45 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 00:14:39 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
-#include <point.h>
+#include <vector.h>
 
-static int				get_len_and_validate(char **data, t_plain *plain)
+static int				get_len_and_validate(char **data, t_plain *pln)
 {
 	int					len;
 
@@ -25,14 +25,14 @@ static int				get_len_and_validate(char **data, t_plain *plain)
 		data++;
 		len++;
 	}
-	if (plain->width == 0)
-		plain->width = len;
-	if (plain->width == 0 || plain->width != len)
+	if (pln->w == 0)
+		pln->w = len;
+	if (pln->w == 0 || pln->w != len)
 		return (-1);
 	return (len);
 }
 
-t_plain					*parse_line(t_plain *plain, char *line)
+t_plain					*parse_line(t_plain *pln, char *line)
 {
 	char				**data;
 	t_list				*el;
@@ -40,19 +40,19 @@ t_plain					*parse_line(t_plain *plain, char *line)
 	int					len;
 
 	len = get_len_and_validate(
-		(data = ft_strsplit(line, ' ')), plain);
+		(data = ft_strsplit(line, ' ')), pln);
 	if ((i = 0) == 0 && len == -1)
-		delete_plain(&plain, 1);
-	while (data[i] && plain != NULL)
+		del_plain(&pln, 1);
+	while (data[i] && pln != NULL)
 	{
-		if (!(el = get_point_el(i, plain->height, ft_atof(data[i]),
-								get_color(data[i]))))
-			delete_plain(&plain, 1);
-		ft_lstadd(&plain->points, el);
+		if (!(el = get_vec_el(i, pln->h, ft_atof(data[i]),
+								parse_color(data[i]))))
+			del_plain(&pln, 1);
+		ft_lstadd(&pln->vecl, el);
 		i++;
 	}
-	if (plain != NULL)
-		plain->height++;
+	if (pln != NULL)
+		pln->h++;
 	ft_delsplit(&data);
-	return (plain);
+	return (pln);
 }

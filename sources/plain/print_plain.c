@@ -6,20 +6,20 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:51 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:11:52 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 00:17:52 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
-#include <point.h>
 #include <stdio.h>
 
-void					print_plain(t_plain *plain)
+void					print_plain(t_plain *pln)
 {
-	printf("plain:\nwidth: %d\nheight: %d\nmx: %d\nmy: %d\nstep: %d\n",
-		   plain->width, plain->height, plain->mx,
-		   plain->my, plain->step);
-	printf("z_scale: %d\nrotx: %d\nroty: %d\nrotz: %d\n", plain->z_scale,
-		   plain->rotx, plain->roty, plain->rotz);
-//	ft_lstiter(plain->points, &print_point_el);
+	printf("plain\n");
+	printf(("\twidth: %d\n\theight: %d\n\tscale x: %d\n"
+			"\tscale y: %d\n\tscale z: %d\n\tpos x: %d\n"
+			"\tpos y: %d\n\trotate x: %d\n\trotate y: %d\n"
+			"\trotate z: %d\n"),
+		   pln->w, pln->h, pln->sx, pln->sy, pln->sz, pln->px,
+		   pln->py, pln->rx, pln->ry, pln->rz);
 }

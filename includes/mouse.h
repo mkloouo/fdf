@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 19:49:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:52:24 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/20 23:32:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 # define MOUSE_BUTTON_RELEASE 5
 # define MOUSE_BUTTON_RELEASE_MASK (1L << 3)
 
-# include <ds.h>
+# include <env.h>
 
-int						mouse_button_press_hook(int button, int x, int y,
-												t_ds *ds);
-int						mouse_button_release_hook(int button, int x, int y,
-													t_ds *ds);
+int						mouse_button_press_hook(int btn, int x, int y,
+t_env *env);
+int						mouse_button_release_hook(int btn, int x, int y,
+t_env *env);
 
 #endif

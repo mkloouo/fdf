@@ -6,36 +6,35 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:14 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 19:27:47 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 00:01:15 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGE_H
 # define IMAGE_H
 
-# include <point.h>
+# include <vector.h>
 # include <plain.h>
 
 typedef struct			s_image
 {
-	void				*image;
-	char				*image_data;
+	void				*imgp;
+	char				*imgd;
 	int					bpp;
 	int					sl;
-	int					endian;
-	int					lendian;
-	int					width;
-	int					height;
+	int					end;
+	int					lend;
+	int					w;
+	int					h;
 }						t_image;
 
-t_image					*get_image(void *mlx, int width, int height);
-void					delete_image(void *mlx, t_image **ip);
+t_image					*get_image(void *mlx, int w, int h);
+void					del_image(void *mlx, t_image **ip);
 
-void					put_image(void *mlx, void *window, t_image *image,
-									t_point2 pos);
+void					draw_line(t_image *img, t_vec2 *v1, t_vec2 *v2);
+void					put_pixel(t_image *img, t_vec2 *v);
+unsigned int			map_color(unsigned int c1, unsigned int c2, float ratio);
 
-void					redraw_plain(t_plain *plain, t_image *image);
-void					put_pixel(t_image *image, int x, int y, unsigned int c);
-void					draw_line(t_image *image, t_point2 *p1, t_point2 *p2);
+void					put_plain_to_image(t_plain *pln, t_image *img);
 
 #endif

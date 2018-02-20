@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_point_el.c                                     :+:      :+:    :+:   */
+/*   del_vec_el.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:12:01 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:12:01 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:47:22 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 00:13:12 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <point.h>
+#include <plain.h>
+#include <vector.h>
 
-t_list					*get_point_el(float x, float y, float z, int color)
+void					del_vec_el(void *vec_el, size_t size)
 {
-	t_list				*el;
-	t_point3				*p;
+	t_vec3				*v;
 
-	el = NULL;
-	if ((p = get_point3(x, y, z, color)))
+	(void)size;
+	if (vec_el)
 	{
-		el = ft_lstnew(p, sizeof(t_point3));
-		delete_point3(&p);
+		v = (t_vec3*)vec_el;
+		del_vec3(&v);
 	}
-	return (el);
 }

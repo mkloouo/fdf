@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   start_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:23:48 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 20:47:04 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 00:36:03 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
-#include <stdio.h>
-#include <errno.h>
+#include <mlx.h>
 
-int						main(int ac, char **av)
+void					start_env(t_env *env)
 {
-	t_plain				*pln;
-	t_env				*env;
-	
-	if (ac == 2)
-	{
-		pln = get_plain_from_file(av[1]);
-		if (pln == NULL)
-		{
-			perror("fdf");
-			return (2);
-		}
-		env = init_env(pln);
-		if (env == NULL)
-		{
-			del_plain(&pln, 0);
-			perror("fdf");
-			return (3);
-		}
-		start_env(env);
-		return (0);
-	}
-	ft_putendl("usage: fdf map_file");
-	return (1);
+	init_hooks(env);
+	env->pln->px = env->img->w / 2;
+	env->pln->py = env->img->h / 2;
+	update_env(env);
+	mlx_loop(env->mlx);
 }

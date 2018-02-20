@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_plain.c                                      :+:      :+:    :+:   */
+/*   get_vec3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:11:50 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:07:09 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:23:45 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/20 22:24:03 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
+#include <vector.h>
+#include <libft.h>
 
-t_plain					*parse_plain(t_plain *pln, int fd)
+t_vec3				*get_vec3(float x, float y, float z, int c)
 {
-	char				*line;
-	int					rt;
+	t_vec3				*p;
 
-	while ((rt = get_next_line(fd, &line)) > 0)
+	if ((p = (t_vec3*)ft_memalloc(sizeof(t_vec3))))
 	{
-		pln = parse_line(pln, line);
-		ft_strdel(&line);
-		if (pln == NULL)
-			break ;
+		p->x = x;
+		p->y = y;
+		p->z = z;
+		p->c = c;
 	}
-	if (rt == 1)
-		while (get_next_line(fd, &line) > 0)
-			ft_strdel(&line);
-	else if (rt == -1)
-		del_plain(&pln, 1);
-	return (pln);
+	return (p);
 }

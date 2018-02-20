@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_point_el.c                                  :+:      :+:    :+:   */
+/*   del_plain.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:11:57 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:11:58 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:46:22 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 00:14:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <point.h>
+#include <plain.h>
 
-void					delete_point_el(void *point_el, size_t size)
+void					del_plain(t_plain **pp, char to_reverse)
 {
-	t_point3				*p;
-
-	(void)size;
-	if (point_el)
+	if (pp && *pp)
 	{
-		p = (t_point3*)point_el;
-		delete_point3(&p);
+		if (to_reverse)
+			ft_lstrev(&((*pp)->vecl));
+		ft_lstdel(&(*pp)->vecl, del_vec_el);
+		ft_memdel((void**)pp);
 	}
 }

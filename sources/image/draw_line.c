@@ -6,95 +6,77 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:29 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 20:34:47 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 00:52:18 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
 #include <math.h>
-/*
-0 -> dx
-1 -> dy
-2 -> sx
-3 -> sy
-4 -> d
-5 -> d1
-6 -> d2
-7 -> x
-8 -> y
-9 -> i
- */
-/* static int				*init_data(t_point2 *p1, t_point2 *p2) */
-/* { */
-/* 	int					*data; */
-/* 	int					x; */
-/* 	int					y; */
 
-/* 	if ((data = (int*)ft_memalloc(sizeof(int) * 9))) */
+/* static void				init_data(int *data, t_vec2 *v1, t_vec2 *v2) */
+/* { */
+/* 	int					swap; */
+
+/* 	data[0] = fabs(v2->x - v1->x); */
+/* 	data[1] = fabs(v2->y - v1->y); */
+/* 	data[2] = (v2->x >= v1->x) ? (1) : (-1); */
+/* 	data[3] = (v2->y >= v1->y) ? (1) : (-1); */
+/* 	swap = (data[1] <= data[0]); */
+/* 	data[5] = (data[((swap) ? (1) : (0))] << 1); */
+/* 	data[4] = data[5] - data[((swap) ? (0) : (1))]; */
+/* 	data[6]	= ((swap) */
+/* 				? (data[1] - data[0]) */
+/* 				: (data[1] - data[0])) << 1; */
+/* 	if (!swap) */
 /* 	{ */
-/* 		data[0] = fabs(p2->x - p1->x); */
-/* 		data[1] = fabs(p2->y - p1->y); */
-/* 		x = p1->x; */
-/* 		y = p1->y; */
-/* 		if (data[1] > data[0]) */
-/* 		{ */
-/* 			ft_swap(&x, &y); */
-/* 			ft_swap((data + 1), (data)); */
-/* 		} */
-/* 		data[2] = p2->x >= p1->x ? 1 : -1; */
-/* 		data[3] = p2->y >= p1->y ? 1 : -1; */
-/* 		if (data[3] > data[2]) */
-/* 			ft_swap((data + 3), (data + 2)); */
-/* 		data[4] = (data[1] << 1) - data[1]; */
-/* 		data[5] = data[1] << 1; */
-/* 		data[6] = (data[1] - data[0]) << 1; */
-/* 		data[7] = x + data[2]; */
-/* 		data[8] = y; */
+/* 		ft_swap((data), (data + 1)); */
+/* 		ft_swap((data + 2), (data + 3)); */
 /* 	} */
-/* 	return (data); */
+/* 	data[7] = ((swap) ? (v1->x) : v1->y) + data[2]; */
+/* 	data[8] = (swap) ? (v1->y) : (v1->x); */
+/* 	data[9] = 1; */
 /* } */
 
-/* void					draw_line(t_image *img, t_point2 *p1, t_point2 *p2) */
+/* void					draw_line(t_image *img, t_vec2 *v1, t_vec2 *v2) */
 /* { */
-/* 	int				*data; */
-/* 	int				i; */
+/* 	int					data[10]; */
+/* 	t_vec2				v; */
 
-/* 	if ((data = init_data(p1, p2))) */
+/* 	init_data(data, v1, v2); */
+/* 	put_pixel(img, v1); */
+/* 	while (data[9] <= data[0]) */
 /* 	{ */
-/* 		i = 1; */
-/* 		put_pixel(img, p1->x, p1->y, p1->color); */
-/* 		while (i <= data[0]) */
+/* 		if (data[4] > 0) */
 /* 		{ */
-/* 			if (data[4] > 0) */
-/* 			{ */
-/* 				data[4] += data[6]; */
-/* 				data[8] += data[3]; */
-/* 			} */
-/* 			else */
-/* 				data[4] = data[5]; */
-/* 			put_pixel(img, data[7], data[8], p1->color); */
-/* 			i++; */
-/* 			data[7] += data[2]; */
+/* 			data[4] += data[6]; */
+/* 			data[8] += data[3]; */
 /* 		} */
-/* 		ft_memdel((void**)&data); */
+/* 		else */
+/* 			data[4] += data[5]; */
+/* 		v.x = data[7]; */
+/* 		v.y = data[8]; */
+/* 		v.c = map_color(v1->c, v2->c, ((float)data[9] / data[0])); */
+/* 		put_pixel(img, &v); */
+/* 		data[9]++; */
+/* 		data[7] += data[2]; */
 /* 	} */
 /* } */
 
-
-void					draw_line(t_image *image, t_point2 *p1, t_point2 *p2)
+void draw_line(t_image *img, t_vec2 *v1, t_vec2 *v2)
 {
-  int dx = fabs(p2->x - p1->x);
-  int dy = fabs(p2->y - p1->y);
-  int sx = p2->x >= p1->x ? 1 : -1;
-  int sy = p2->y >= p1->y ? 1 : -1;
+  int dx = fabs(v2->x - v1->x);
+  int dy = fabs(v2->y - v1->y);
+  int sx = v2->x >= v1->x ? 1 : -1;
+  int sy = v2->y >= v1->y ? 1 : -1;
+  t_vec2			v;
   
   if (dy <= dx)
   {
     int d = (dy << 1) - dx;
     int d1 = dy << 1;
     int d2 = (dy - dx) << 1;
-    put_pixel(image, p1->x, p1->y, p1->color);
-    for(int x = p1->x + sx, y = p1->y, i = 1; i <= dx; i++, x += sx)
+   put_pixel(img, v1);
+    for(int x = v1->x + sx, y = v1->y, i = 1; i <= dx; i++, x += sx)
     {
       if ( d >0)
       {
@@ -103,7 +85,10 @@ void					draw_line(t_image *image, t_point2 *p1, t_point2 *p2)
       }
       else
         d += d1;
-      put_pixel(image, x, y, p1->color);
+	  v.x = x;
+	  v.y = y;
+	  v.c = map_color(v1->c, v2->c, ((float)i / dx));
+     put_pixel(img, &v);
     }
   }
   else
@@ -111,8 +96,8 @@ void					draw_line(t_image *image, t_point2 *p1, t_point2 *p2)
     int d = (dx << 1) - dy;
     int d1 = dx << 1;
     int d2 = (dx - dy) << 1;
-    put_pixel(image, p1->x, p1->y, p1->color);
-    for(int y = p1->y + sy, x = p1->x, i = 1; i <= dy; i++, y += sy)
+   put_pixel(img, v1);
+    for(int y = v1->y + sy, x = v1->x, i = 1; i <= dy; i++, y += sy)
     {
       if ( d >0)
       {
@@ -121,7 +106,10 @@ void					draw_line(t_image *image, t_point2 *p1, t_point2 *p2)
       }
       else
         d += d1;
-      put_pixel(image, x, y, p1->color);
+	  	  v.x = x;
+	  v.y = y;
+	  v.c = map_color(v1->c, v2->c, ((float)i / dx));
+     put_pixel(img, &v);
     }
   }
 }

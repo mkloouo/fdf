@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_plain.c                                     :+:      :+:    :+:   */
+/*   set_vec2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 17:11:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/19 17:11:37 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 22:24:24 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/20 22:24:36 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
-#include <point.h>
+#include <vector.h>
 
-void					delete_plain(t_plain **pp, char need_reverse)
+void					set_vec2(t_vec2 *v, float x, float y)
 {
-	if (pp && *pp)
+	if (v)
 	{
-		if (need_reverse)
-			ft_lstrev(&((*pp)->points));
-		ft_lstdel(&(*pp)->points, delete_point_el);
-		ft_memdel((void**)pp);
+		v->x = x;
+		v->y = y;
 	}
 }

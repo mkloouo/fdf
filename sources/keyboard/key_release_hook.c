@@ -1,13 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_release_hook.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/20 20:18:58 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 00:36:38 by modnosum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <keyboard.h>
-#include <plain.h>
 #include <stdio.h>
-#include <stdlib.h>
-
-int						key_release_hook(int button, t_ds *ds)
+int						key_release_hook(int btn, t_env *env)
 {
-	printf("keyboard button released: %d\n", button);
-//	handle_key(button, ds);
-	(void)ds;
+//	printf("button released: %d\n", btn);
+	(void)env;
+	(void)btn;
 	return (0);
 }

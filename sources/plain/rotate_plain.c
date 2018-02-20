@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_plain.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/20 23:21:00 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 00:06:19 by modnosum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <plain.h>
 #include <keyboard.h>
 
-void					rotate_plain(t_plain *plain, int button)
+void					rotate_plain(t_plain *pln, int btn)
 {
-	if (ROTATE_X(button))
+	if (ROTATE_X(btn))
 	{
-		plain->rotx += ROTATE_X_P(button) ? 1 : -1;
-		plain->rotx = plain->rotx % 360;
+		pln->rx += ROTATE_X_P(btn) ? 1 : -1;
+		pln->rx = pln->rx % 360;
 	}
-	else if (ROTATE_Y(button))
+	else if (ROTATE_Y(btn))
 	{
-		plain->roty += ROTATE_Y_P(button) ? 1 : -1;
-		plain->roty = plain->roty % 360;
+		pln->ry += ROTATE_Y_P(btn) ? 1 : -1;
+		pln->ry = pln->ry % 360;
 	}
-	else if (ROTATE_Z(button))
+	else if (ROTATE_Z(btn))
 	{
-		plain->rotz += ROTATE_Z_P(button) ? 1 : -1;
-		plain->rotz = plain->rotz % 360;
+		pln->rz += ROTATE_Z_P(btn) ? 1 : -1;
+		pln->rz = pln->rz % 360;
 	}
 }

@@ -6,14 +6,13 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:16:52 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 23:32:23 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:33:16 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
 #include <mlx.h>
-#include <keyboard.h>
-#include <mouse.h>
+#include <handlers.h>
 
 void					init_hooks(t_env *env)
 {

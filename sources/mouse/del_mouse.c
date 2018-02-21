@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_button_press_hook.c                          :+:      :+:    :+:   */
+/*   del_mouse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 00:03:15 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:03:15 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/21 17:12:59 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 17:13:38 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mouse.h>
-#include <stdio.h>
+#include <libft.h>
 
-int						mouse_button_press_hook(int button, int x, int y,
-												t_env *env)
+void					del_mouse(t_mouse **mp)
 {
-	printf("mouse button pressed: %d at %dX%d\n", button, x, y);
-	(void)env;
-	return (0);
+	del_vec2(&(*mp)->pv);
+	del_vec2(&(*mp)->rv);
+	ft_memdel((void**)mp);
 }

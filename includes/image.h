@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:14 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:01:15 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:57:17 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ typedef struct			s_image
 t_image					*get_image(void *mlx, int w, int h);
 void					del_image(void *mlx, t_image **ip);
 
+int						is_in_image(t_image *img, t_vec2 *v);
+
 void					draw_line(t_image *img, t_vec2 *v1, t_vec2 *v2);
 void					put_pixel(t_image *img, t_vec2 *v);
 unsigned int			map_color(unsigned int c1, unsigned int c2, float ratio);
 
 void					put_plain_to_image(t_plain *pln, t_image *img);
+t_vec2					*perspective_3d_to_2d(t_vec3 *v, t_plain *pln,
+int i, int j);
 
 #endif

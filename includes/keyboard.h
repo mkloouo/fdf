@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 01:09:51 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:28:40 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@
 
 # endif
 
-# include <env.h>
-
-# define KEY_RELEASE 3
-# define KEY_RELEASE_MASK (1L << 1)
-# define KEY_PRESS 2
-# define KEY_PRESS_MASK (1L << 0)
-
 # define QUIT_BUTTON(B) (B == ESC_KC)
 
 # define POSITION_UP(B) (B == UP_ARR_KC)
@@ -100,9 +93,5 @@
 # define ZOOM(B) (ZOOM_IN(B) || ZOOM_OUT(B))
 
 # define SCALE_BUTTON(B) (SCALE_X(B) || SCALE_Y(B) || SCALE_Z(B) || ZOOM(B))
-
-int						key_press_hook(int btn, t_env *env);
-int						key_release_hook(int btn, t_env *env);
-void					handle_key(int btn, t_env *env);
 
 #endif

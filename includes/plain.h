@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 01:20:24 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:52:35 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # define DEFAULT_X_ROTATE -45
 # define DEFAULT_Y_ROTATE -130
 # define DEFAULT_Z_ROTATE 45
-# define DEFAULT_SCALE 10
+# define DEFAULT_SCALE 1
 # define DEFAULT_POSITION 10
+# define DEFAULT_STEP 5
 # define DEFAULT_COLOR 0x00FFFFFF
 
 typedef struct			s_plain

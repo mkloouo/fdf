@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   key_release_hook.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:43:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 17:31:46 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/20 20:18:58 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 17:55:29 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
-#include <mlx.h>
-#include <libft.h>
+#include <handlers.h>
 
-t_env					*init_env(t_plain *pln)
+int						key_release_hook(int btn, t_env *env)
 {
-	t_env				*env;
-
-	if ((env = (t_env*)ft_memalloc(sizeof(t_env))))
-	{
-		env->mlx = mlx_init();
-		env->win = mlx_new_window(env->mlx, DEFAULT_WIDTH,
-								  DEFAULT_HEIGHT,
-								  "FdF");
-		env->img = get_image(env->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-		env->pln = pln;
-		env->ms = init_mouse();
-	}
-	return (env);
+	(void)env;
+	(void)btn;
+	return (0);
 }

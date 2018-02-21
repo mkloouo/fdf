@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   init_mouse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:43:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 17:31:46 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/21 17:11:11 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 17:24:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
-#include <mlx.h>
+#include <mouse.h>
 #include <libft.h>
 
-t_env					*init_env(t_plain *pln)
+t_mouse					*init_mouse(void)
 {
-	t_env				*env;
+	t_mouse				*ms;
 
-	if ((env = (t_env*)ft_memalloc(sizeof(t_env))))
+	if ((ms = (t_mouse*)ft_memalloc(sizeof(t_mouse))))
 	{
-		env->mlx = mlx_init();
-		env->win = mlx_new_window(env->mlx, DEFAULT_WIDTH,
-								  DEFAULT_HEIGHT,
-								  "FdF");
-		env->img = get_image(env->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-		env->pln = pln;
-		env->ms = init_mouse();
+		ms->pv = get_vec2(0, 0, 0);
+		ms->rv = get_vec2(0, 0, 0);
 	}
-	return (env);
+	return (ms);
 }

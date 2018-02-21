@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:33 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:00:10 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:44:53 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void					put_pixel(t_image *img, t_vec2 *v)
 	int					temp;
 	char				*p;
 
-	if (v->x >= 0 && v->x < img->w &&
-		v->y >= 0 && v->y < img->h && img)
+	if (is_in_image(img, v))
 	{
 		opp = img->bpp / 8;
 		temp = opp;

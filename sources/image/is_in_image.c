@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_release_hook.c                                 :+:      :+:    :+:   */
+/*   is_in_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:18:58 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:36:38 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/21 16:10:40 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 16:11:14 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <keyboard.h>
-#include <stdio.h>
-int						key_release_hook(int btn, t_env *env)
+#include <image.h>
+
+int						is_in_image(t_image *img, t_vec2 *v)
 {
-//	printf("button released: %d\n", btn);
-	(void)env;
-	(void)btn;
-	return (0);
+	return (v->x >= 0 && v->x < img->w &&
+		v->y >= 0 && v->y < img->h);
 }

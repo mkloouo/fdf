@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:12:20 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:28:13 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:15:55 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # include <image.h>
 # include <plain.h>
+# include <mouse.h>
 
 typedef struct			s_env
 {
@@ -31,6 +32,7 @@ typedef struct			s_env
 	void				*win;
 	t_plain				*pln;
 	t_image				*img;
+	t_mouse				*ms;
 }						t_env;
 
 t_env					*init_env(t_plain *pln);

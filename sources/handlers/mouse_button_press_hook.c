@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press_hook.c                                   :+:      :+:    :+:   */
+/*   mouse_button_press_hook.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:18:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 01:21:54 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/21 00:03:15 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/21 17:33:55 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <keyboard.h>
-#include <stdio.h>
-int						key_press_hook(int btn, t_env *env)
+#include <handlers.h>
+
+int						mouse_button_press_hook(int btn, int x, int y,
+t_env *env)
 {
-	printf("button pressed: %d\n", btn);
-//	print_plain(env->pln);
-	handle_key(btn, env);
+	set_vec2(env->ms->pv, x, y);
+	set_vec2_c(env->ms->pv, btn);
+	(void)env;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:14 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 16:57:17 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:15:37 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <vector.h>
 # include <plain.h>
+
+# define IN_IMAGE(I,V) (V->x >= 0 && V->x < I->w && V->y >= 0 && V->y < I->h)
 
 typedef struct			s_image
 {
@@ -30,8 +32,6 @@ typedef struct			s_image
 
 t_image					*get_image(void *mlx, int w, int h);
 void					del_image(void *mlx, t_image **ip);
-
-int						is_in_image(t_image *img, t_vec2 *v);
 
 void					draw_line(t_image *img, t_vec2 *v1, t_vec2 *v2);
 void					put_pixel(t_image *img, t_vec2 *v);

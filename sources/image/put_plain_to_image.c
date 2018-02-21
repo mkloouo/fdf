@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:29:45 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 16:59:12 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:05:56 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void				del_vec2_data(t_vec2 ****ap, t_plain *pln)
 
 static int				is_valid_line(t_image *img, t_vec2 *p1, t_vec2 *p2)
 {
-	return (is_in_image(img, p1) || is_in_image(img, p2));
+	return (IN_IMAGE(img, p1) || IN_IMAGE(img, p2));
 }
 
 void					put_plain_to_image(t_plain *pln, t_image *img)

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:29 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 16:45:16 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:03:38 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,9 @@ void					draw_line(t_image *img, t_vec2 *v1, t_vec2 *v2)
 		}
 		else
 			data[4] += data[5];
-		if (is_in_image(img, v))
-		{
-			set_vec2(v, data[(data[10] ? 8 : 7)], data[(data[10] ? 7 : 8)]);
-			set_vec2_c(v, map_color(v1->c, v2->c, ((float)data[9] / data[0])));
-			put_pixel(img, v);
-		}
+		set_vec2(v, data[(data[10] ? 8 : 7)], data[(data[10] ? 7 : 8)]);
+		set_vec2_c(v, map_color(v1->c, v2->c, ((float)data[9] / data[0])));
+		put_pixel(img, v);
 		data[9]++;
 		data[7] += data[2];
 	}

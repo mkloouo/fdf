@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:16:29 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 18:15:18 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/21 21:53:45 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void				handle_scroll(t_env *env, int btn)
 {
 	env->pln->sx += SCROLL_UP(btn) ? (1) : (-1);
 	env->pln->sy += SCROLL_UP(btn) ? (1) : (-1);
+	env->pln->sz += SCROLL_UP(btn) ? (1) : (-1);
 }
 
 void					handle_mouse(t_env *env)

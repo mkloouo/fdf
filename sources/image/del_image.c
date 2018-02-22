@@ -6,15 +6,19 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:28:43 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:01:34 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 04:27:51 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
+#include <libft.h>
 #include <mlx.h>
 
 void					del_image(void *mlx, t_image **ip)
 {
-	mlx_destroy_image(mlx, (*ip)->imgp);
-	ft_memdel((void**)ip);
+	if (ip && *ip)
+	{
+		mlx_destroy_image(mlx, (*ip)->ip);
+		ft_memdel((void**)ip);
+	}
 }

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_vec3.c                                         :+:      :+:    :+:   */
+/*   set_vec2i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:23:45 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:24:03 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:24:33 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:24:34 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector.h>
-#include <libft.h>
 
-t_vec3				*get_vec3(float x, float y, float z, int c)
+void					set_vec2i(t_vec2i *v, int x, int y)
 {
-	t_vec3				*p;
-
-	if ((p = (t_vec3*)ft_memalloc(sizeof(t_vec3))))
+	if (v)
 	{
-		p->x = x;
-		p->y = y;
-		p->z = z;
-		p->c = c;
+		v->x = x;
+		v->y = y;
 	}
-	return (p);
 }

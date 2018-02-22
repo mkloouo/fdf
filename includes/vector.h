@@ -6,40 +6,63 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:20:50 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:27:41 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 00:02:37 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
 
-typedef struct			s_vec3
+typedef struct			s_vec3d
+{
+	double				x;
+	double				y;
+	double				z;
+}						t_vec3d;
+
+typedef struct			s_vec2d
+{
+	double				x;
+	double				y;
+}						t_vec2d;
+
+typedef struct			s_vec3f
 {
 	float				x;
 	float				y;
 	float				z;
-	int					c;
-}						t_vec3;
+}						t_vec3f;
 
-typedef struct			s_vec2
+typedef struct			s_vec2f
 {
 	float				x;
 	float				y;
-	int					c;
-}						t_vec2;
+}						t_vec2f;
 
-t_vec3					*get_vec3(float x, float y, float z, int c);
+typedef struct			s_vec3i
+{
+	int					x;
+	int					y;
+	int					z;
+}						t_vec3i;
 
-void					set_vec3(t_vec3 *v, float x, float y, float z);
-void					set_vec3_c(t_vec3 *v, int c);
+typedef struct			s_vec2i
+{
+	int					x;
+	int					y;
+}						t_vec2i;
 
-void					del_vec3(t_vec3 **vp);
 
-t_vec2					*get_vec2(float x, float y, int c);
+t_vec3f					*get_vec3f(float x, float y, float z);
+void					set_vec3f(t_vec3f *v, float x, float y, float z);
+void					del_vec3f(t_vec3f **vp);
 
-void					set_vec2(t_vec2 *v, float x, float y);
-void					set_vec2_c(t_vec2 *v, int c);
+void					print_vec3f(t_vec3f *v);
 
-void					del_vec2(t_vec2 **vp);
+t_vec2i					*get_vec2i(int x, int y);
+void					set_vec2i(t_vec2i *v, int x, int y);
+void					del_vec2i(t_vec2i **vp);
+
+void					print_vec2i(t_vec2i *v);
 
 #endif

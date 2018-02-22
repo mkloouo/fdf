@@ -6,19 +6,35 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:46:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:14:04 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 04:29:10 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
+#include <libft.h>
 
-void					del_plain(t_plain **pp, char to_reverse)
+void					del_plain(t_plain **pp)
 {
+	int					i;
+	int					j;
+
 	if (pp && *pp)
 	{
-		if (to_reverse)
-			ft_lstrev(&((*pp)->vecl));
-		ft_lstdel(&(*pp)->vecl, del_vec_el);
+		i = 0;
+		while (i < (*pp)->h)
+		{
+			j = 0;
+			while (j < (*pp)->w)
+			{
+				if ((*pp)->va[i][j] == NULL || (*pp)->ca[i] == NULL)
+					break ;
+				del_vec3f((((*pp)->va[i]) + j));
+				j++;
+			}
+			ft_memdel((void**)((*pp)->va + i));
+			i++;
+		}
+		del_transf(&(*pp)->tr);
 		ft_memdel((void**)pp);
 	}
 }

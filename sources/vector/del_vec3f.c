@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key.c                                       :+:      :+:    :+:   */
+/*   del_vec3f.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:20:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 17:30:43 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:23:12 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:23:12 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <handlers.h>
-#include <keyboard.h>
+#include <vector.h>
+#include <libft.h>
 
-void					handle_key(int btn, t_env *env)
+void					del_vec3f(t_vec3f **vp)
 {
-	if (QUIT_BUTTON(btn))
-		del_env(&env);
-	if (POSITION_BUTTON(btn))
-	{
-		position_plain(env->pln, btn);
-		update_env(env);
-	}
-	if (ROTATE_BUTTON(btn))
-	{
-		rotate_plain(env->pln, btn);
-		update_env(env);
-	}
-	if (SCALE_BUTTON(btn))
-	{
-		scale_plain(env->pln, btn);
-		update_env(env);
-	}
+	if (vp && *vp)
+		ft_memdel((void**)vp);
 }

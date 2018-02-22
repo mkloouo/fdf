@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position_plain.c                                   :+:      :+:    :+:   */
+/*   set_transf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 23:20:40 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 16:52:45 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 02:26:33 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 02:27:24 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
-#include <keyboard.h>
+#include <transform.h>
 
-void					position_plain(t_plain *pln, int btn)
+void					set_transf(t_transf *tr, t_vec3f *pos,
+								   t_vec3f *scl, t_vec3f *rot)
 {
-	if (POSITION_UP(btn))
-		pln->py -= DEFAULT_STEP;
-	else if (POSITION_LEFT(btn))
-		pln->px -= DEFAULT_STEP;
-	else if (POSITION_DOWN(btn))
-		pln->py += DEFAULT_STEP;
-	else if (POSITION_RIGHT(btn))
-		pln->px += DEFAULT_STEP;
+	tr->pos = pos;
+	tr->scl = scl;
+	tr->rot = rot;
 }

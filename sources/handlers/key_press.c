@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_vec3.c                                         :+:      :+:    :+:   */
+/*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:24:45 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:25:01 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:42:51 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:45:02 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
+#include <handlers.h>
 
-void					set_vec3(t_vec3 *v, float x, float y, float z)
+int						key_press(int btn, t_env *env)
 {
-	if (v)
-	{
-		v->x = x;
-		v->y = y;
-		v->z = z;
-	}
+	key_handler(btn, env);
+	return (0);
 }

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_vec2_c.c                                       :+:      :+:    :+:   */
+/*   del_transf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:26:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:15:00 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 02:27:39 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 02:57:27 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
+#include <transform.h>
+#include <libft.h>
 
-void					set_vec2_c(t_vec2 *v, int c)
+void					del_transf(t_transf **tp)
 {
-	if (v)
-		v->c = c;
+	del_vec3f(&(*tp)->pos);
+	del_vec3f(&(*tp)->scl);
+	del_vec3f(&(*tp)->rot);
+	ft_memdel((void**)tp);
 }

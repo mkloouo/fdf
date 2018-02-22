@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_env.c                                        :+:      :+:    :+:   */
+/*   ms_btn_press.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:47:04 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 02:58:46 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:43:35 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 04:01:30 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
-#include <mlx.h>
+#include <handlers.h>
 
-void					start_env(t_env *env)
+int						ms_btn_press(int btn, int x, int y, t_env *env)
 {
-	setup_window(env);
-	init_hooks(env);
-	update_env(env);
-	mlx_loop(env->mlx);
+	set_vec2i(env->ms->pv, x, y);
+	env->ms->btn = btn;
+	env->ms->pressed = 1;
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/02/19 17:08:22 by modnosum         ###   ########.fr        #
+#    Updated: 2018/02/21 23:39:29 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,27 +25,30 @@ SRC_DIR					= ./sources
 OBJ_DIR					= ./objects
 INC_DIR					= ./includes
 
-# Source and object lists
+# Source and object lists as well as directories for objects
 SRCS					:= $(shell find $(SRC_DIR) -type f -name "*.c")
 OBJS					:= $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRCS:.c=.o))
+OBJ_DIRS				:= $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%,$(shell\
+find $(SRC_DIR) -type d))
 
 # Add outside variables
 FT_PATH					:= ./libft
+MLX_PATH				= ./mlx
 include $(FT_PATH)/Libft.mk
-include Mlx.mk
+include $(MLX_PATH)/Mlx.mk
 
-# Modify flags a bit
+# Add dirs and libs
 IFLAGS					+= -I $(INC_DIR)
 LFLAGS					+= -lm
 
 # Phony rules
 .PHONY: all clean fclean re c f
 
-# Coloring
-include Coloring.mk 
+# Colored output
+include ColorOut.mk 
 
 # Named rules
-all: $(MLX_NAME) $(FT_NAME) $(NAME)
+all: $(MLX_NAME) $(NAME)
 clean:
 	@rm -fR $(OBJ_DIR)
 	@rm -fR $(MLX_NAME)
@@ -54,27 +57,31 @@ clean:
 fclean: clean
 	@rm -fR $(NAME)
 	@$(MAKE) $(MFLAGS) $(FT_PATH) fclean
-ifdef MLX_PATH
+ifneq ("./mlx",$(MLX_PATH))
 	@$(MAKE) $(MFLAGS) $(MLX_PATH) clean
 endif
 	$(call PRINT,$(MAGENTA),"Removed $(NAME).")
 re: fclean all
 
 # Variable rules
-$(NAME): $(OBJS)
-	@$(CC) -o $@ $^ *.a $(CFLAGS) $(IFLAGS) $(LFLAGS)
+$(NAME): $(FT_NAME) $(OBJS)
+	@$(CC) -o $@ $(OBJS) *.a $(CFLAGS) $(IFLAGS) $(LFLAGS)
 	$(call PRINT,$(GREEN),"Build $@.")
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(CFLAGS) $(IFLAGS)
 	$(call PRINT,$(BLUE),"$< ->",$(GREEN),"$@")
+
 $(OBJ_DIR):
-	@mkdir -p $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%,$(shell find $(SRC_DIR) -type d))
+	@mkdir -p $(OBJ_DIRS)
 	$(call PRINT,$(BLUE),"Created $@ directory.")
+
 $(FT_NAME): $(FT_DEP)
 	@$(MAKE) $(MFLAGS) $(FT_PATH)
 	@cp $(FT_PATH)/$@ ./$@
+
 $(MLX_NAME): $(MLX_DEP)
-ifeq (1,$(MLX_NEED_COMPILE))
+ifneq ("./mlx",$(MLX_PATH))
 	@$(MAKE) $(MFLAGS) $(MLX_PATH)
 	@cp $(MLX_PATH)/$@ ./$@
 endif

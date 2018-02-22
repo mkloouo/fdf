@@ -6,25 +6,16 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 23:21:02 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 20:37:53 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 03:29:56 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
-#include <keyboard.h>
 
-void					scale_plain(t_plain *pln, int btn)
+void					scale_plain(t_plain *pln, t_vec3f *scl)
 {
-	if (ZOOM(btn))
-	{
-		pln->sx += ZOOM_IN(btn) ? (1) : (-1);
-		pln->sy += ZOOM_IN(btn) ? (1) : (-1);
-		pln->sz += ZOOM_IN(btn) ? (1) : (-1);
-	}
-	else if (SCALE_X(btn))
-		pln->sx += SCALE_X_P(btn) ? (1) : (-1);
-	else if (SCALE_Y(btn))
-		pln->sy += SCALE_Y_P(btn) ? (1) : (-1);
-	else if (SCALE_Z(btn))
-		pln->sz += SCALE_Z_P(btn) ? (1) : (-1);
+	t_vec3f				*ls;
+
+	ls = pln->tr->rot;
+	set_vec3f(ls, ls->x + scl->x, ls->z + scl->y, ls->z + scl->z);
 }

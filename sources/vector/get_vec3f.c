@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_env.c                                        :+:      :+:    :+:   */
+/*   get_vec3f.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:47:04 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 02:58:46 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:24:10 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:25:50 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
-#include <mlx.h>
+#include <vector.h>
+#include <libft.h>
 
-void					start_env(t_env *env)
+t_vec3f					*get_vec3f(float x, float y, float z)
 {
-	setup_window(env);
-	init_hooks(env);
-	update_env(env);
-	mlx_loop(env->mlx);
+	t_vec3f				*p;
+
+	if ((p = (t_vec3f*)ft_memalloc(sizeof(t_vec3f))))
+	{
+		p->x = x;
+		p->y = y;
+		p->z = z;
+	}
+	return (p);
 }

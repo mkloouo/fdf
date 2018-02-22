@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   setup_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:43:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:32:06 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 04:31:44 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 04:39:19 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,19 @@
 #include <mlx.h>
 #include <libft.h>
 
-t_env					*init_env(t_plain *pln, char *name)
+void					setup_window(t_env *env)
 {
-	t_env				*env;
-	char				*title;
-	char				*temp;
-
-	if ((env = (t_env*)ft_memalloc(sizeof(t_env))))
+	if (env->w == 0 || env->h == 0)
 	{
-		env->mlx = NULL;
-		env->win = NULL;
-		temp = ft_strjoin(name, " : ");
-		title = ft_strjoin(temp, name);
-		ft_strdel(&temp);
-		env->pln = pln;
-		env->img = NULL;
-		env->ms = init_mouse();
-		env->kb = init_keyboard();
-		env->title = title;
-		env->w = 0;
-		env->h = 0;
+		if (env->w == 0)
+			env->w = get_preferred_width(env->pln);
+		if (env->h == 0)
+			env->h = get_preferred_height(env->pln);
+		if (env->w < WIN_MIN_WIDTH || env->w > WIN_MAX_WIDTH)
+			env->w = WIN_DEFAULT_WIDTH;
+		if (env->h < WIN_MIN_HEIGHT || env->h > WIN_MAX_HEIGHT)
+			env->h = WIN_DEFAULT_HEIGHT;
 	}
-	return (env);
+	env->mlx = mlx_init();
+	env->win = mlx_new_window(env->mlx, env->w, env->h, env->title);
 }

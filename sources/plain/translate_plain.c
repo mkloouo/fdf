@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_env.c                                        :+:      :+:    :+:   */
+/*   translate_plain.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:47:04 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 02:58:46 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:30:26 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:31:19 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
-#include <mlx.h>
+#include <plain.h>
 
-void					start_env(t_env *env)
+void					translate_plain(t_plain *pln, t_vec3f *pos)
 {
-	setup_window(env);
-	init_hooks(env);
-	update_env(env);
-	mlx_loop(env->mlx);
+	t_vec3f				*lp;
+
+	lp = pln->tr->pos;
+	set_vec3f(lp, lp->x + pos->x, lp->z + pos->y, lp->z + pos->z);
 }

@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_button_press_hook.c                          :+:      :+:    :+:   */
+/*   key_release.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 00:03:15 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 17:33:55 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:42:42 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:42:42 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <handlers.h>
 
-int						mouse_button_press_hook(int btn, int x, int y,
-t_env *env)
+int						key_release(int btn, t_env *env)
 {
-	set_vec2(env->ms->pv, x, y);
-	set_vec2_c(env->ms->pv, btn);
 	(void)env;
+	(void)btn;
 	return (0);
 }

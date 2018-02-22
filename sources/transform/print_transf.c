@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_vec_el.c                                       :+:      :+:    :+:   */
+/*   print_transf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:52:23 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:06:49 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 02:28:37 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 02:29:55 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <vector.h>
+#include <transform.h>
+#include <stdio.h>
 
-t_list					*get_vec_el(float x, float y, float z, int c)
+void					print_transf(t_transf *tr)
 {
-	t_list				*el;
-	t_vec3				*v;
-
-	el = NULL;
-	if ((v = get_vec3(x, y, z, c)))
-	{
-		el = ft_lstnew(v, sizeof(t_vec3));
-		del_vec3(&v);
-	}
-	return (el);
+	printf("transform:\n");
+	print_vec3f(tr->pos);
+	print_vec3f(tr->scl);
+	print_vec3f(tr->rot);
 }

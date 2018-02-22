@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_vec3.c                                         :+:      :+:    :+:   */
+/*   print_vec2i.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:27:31 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:27:35 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 04:13:03 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 04:13:42 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector.h>
-#include <libft.h>
+#include <stdio.h>
 
-void					del_vec3(t_vec3 **vp)
+void					print_vec2i(t_vec2i *v)
 {
-	if (vp && *vp)
-		ft_memdel((void**)vp);
+	if (v)
+	{
+		printf("vector:\n");
+		printf("x: %d\ny: %d\n", v->x, v->y);
+	}
 }

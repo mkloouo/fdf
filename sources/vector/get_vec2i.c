@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_button_release_hook.c                        :+:      :+:    :+:   */
+/*   get_vec2i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 00:03:12 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 17:34:04 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:23:38 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 03:25:57 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <handlers.h>
+#include <vector.h>
+#include <libft.h>
 
-int						mouse_button_release_hook(int btn, int x, int y,
-t_env *env)
+t_vec2i					*get_vec2i(int x, int y)
 {
-	set_vec2(env->ms->rv, x, y);
-	set_vec2_c(env->ms->rv, btn);
-	handle_mouse(env);
-	(void)env;
-	return (0);
+	t_vec2i			*v;
+
+	if ((v = (t_vec2i*)ft_memalloc(sizeof(t_vec2i))))
+	{
+		v->x = x;
+		v->y = y;
+	}
+	return (v);
 }

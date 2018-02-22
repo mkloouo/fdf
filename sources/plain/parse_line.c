@@ -6,20 +6,21 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:14:39 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 03:39:46 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
+#include <libft.h>
 #include <vector.h>
 
-static int				get_len_and_validate(char **data, t_plain *pln)
+static int				validate_length(char **data, t_plain *pln)
 {
 	int					len;
 
 	len = 0;
 	if (data == NULL)
-		return (-1);
+		return (0);
 	while (*data)
 	{
 		data++;
@@ -28,31 +29,33 @@ static int				get_len_and_validate(char **data, t_plain *pln)
 	if (pln->w == 0)
 		pln->w = len;
 	if (pln->w == 0 || pln->w != len)
-		return (-1);
+		return (0);
 	return (len);
 }
 
-t_plain					*parse_line(t_plain *pln, char *line)
+t_plain					*parse_line(t_plain *pln, char *line, int row)
 {
 	char				**data;
-	t_list				*el;
-	int					i;
 	int					len;
+	int					i;
 
-	len = get_len_and_validate(
-		(data = ft_strsplit(line, ' ')), pln);
-	if ((i = 0) == 0 && len == -1)
-		del_plain(&pln, 1);
-	while (data[i] && pln != NULL)
+	if (!(data = (char**)ft_strsplit(line, ' ')))
+		del_plain(&pln);
+	i = 0;
+	if (!(len = validate_length(data, pln)) ||
+		!(pln->va[row] = (t_vec3f**)ft_memalloc(sizeof(t_vec3f*) * pln->w)) ||
+		!(pln->ca[row] = (int*)ft_memalloc(sizeof(int) * pln->w)))
+		del_plain(&pln);
+	while (i < len)
 	{
-		if (!(el = get_vec_el(i, pln->h, ft_atof(data[i]),
-								parse_color(data[i]))))
-			del_plain(&pln, 1);
-		ft_lstadd(&pln->vecl, el);
+		if (!(pln->va[row][i] = get_vec3f(i, row, ft_atof(data[i]))))
+		{
+			del_plain(&pln);
+			break ;
+		}
+		pln->ca[row][i] = parse_color(data[i]);
 		i++;
 	}
-	if (pln != NULL)
-		pln->h++;
-	ft_delsplit(&data);
+	ft_memdel((void**)&data);
 	return (pln);
 }

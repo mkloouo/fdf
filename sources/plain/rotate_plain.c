@@ -6,28 +6,16 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 23:21:00 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:06:19 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 03:30:01 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
-#include <keyboard.h>
 
-void					rotate_plain(t_plain *pln, int btn)
+void					rotate_plain(t_plain *pln, t_vec3f *rot)
 {
-	if (ROTATE_X(btn))
-	{
-		pln->rx += ROTATE_X_P(btn) ? 1 : -1;
-		pln->rx = pln->rx % 360;
-	}
-	else if (ROTATE_Y(btn))
-	{
-		pln->ry += ROTATE_Y_P(btn) ? 1 : -1;
-		pln->ry = pln->ry % 360;
-	}
-	else if (ROTATE_Z(btn))
-	{
-		pln->rz += ROTATE_Z_P(btn) ? 1 : -1;
-		pln->rz = pln->rz % 360;
-	}
+	t_vec3f				*lr;
+
+	lr = pln->tr->rot;
+	set_vec3f(lr, lr->x + rot->x, lr->z + rot->y, lr->z + rot->z);
 }

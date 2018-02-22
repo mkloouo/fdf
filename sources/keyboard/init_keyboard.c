@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_vec3_c.c                                       :+:      :+:    :+:   */
+/*   init_keyboard.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:25:17 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:26:08 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 04:10:35 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 04:12:03 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
+#include <keyboard.h>
+#include <libft.h>
 
-void					set_vec3_c(t_vec3 *v, int c)
+t_keyboard				*init_keyboard(void)
 {
-	if (v)
-		v->c = c;
+	t_keyboard			*kb;
+
+	if ((kb = (t_keyboard*)ft_memalloc(sizeof(t_keyboard))))
+	{
+		kb->ctrl_pressed = 0;
+		kb->shift_pressed = 0;
+		kb->alt_pressed = 0;
+	}
+	return (kb);
 }

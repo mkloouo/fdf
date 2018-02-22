@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_vec2.c                                         :+:      :+:    :+:   */
+/*   ms_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:27:03 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/20 22:27:06 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 03:42:00 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 04:09:31 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
-#include <libft.h>
+#include <handlers.h>
+#include <stdio.h>
 
-void					del_vec2(t_vec2 **vp)
+int						ms_move(int x, int y, t_env *env)
 {
-	ft_memdel((void**)vp);
+	printf("mouse move: %dX%d\n", x, y);
+	set_vec2i(env->ms->cv, x, y);
+	mouse_handler(env);
+	(void)env;
+	return (1);
 }

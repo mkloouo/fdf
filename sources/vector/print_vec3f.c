@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press_hook.c                                   :+:      :+:    :+:   */
+/*   print_vec3f.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 20:18:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 17:55:23 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 04:13:54 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 04:14:27 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <handlers.h>
-#include <keyboard.h>
+#include <vector.h>
+#include <stdio.h>
 
-int						key_press_hook(int btn, t_env *env)
+void					print_vec3f(t_vec3f *v)
 {
-	handle_key(btn, env);
-	return (0);
+	if (v)
+	{
+		printf("vector:\n");
+		printf("x: %f\ny: %f\nz: %f\n", v->x, v->y, v->z);
+	}
 }

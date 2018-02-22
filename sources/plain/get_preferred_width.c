@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_vec_el.c                                       :+:      :+:    :+:   */
+/*   get_preferred_width.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:47:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:13:12 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 02:47:31 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 02:52:00 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
-#include <vector.h>
 
-void					del_vec_el(void *vec_el, size_t size)
+int						get_preferred_width(t_plain *pln)
 {
-	t_vec3				*v;
+	int					w;
 
-	(void)size;
-	if (vec_el)
-	{
-		v = (t_vec3*)vec_el;
-		del_vec3(&v);
-	}
+	w = pln->tr->scl->x * pln->w;
+	return (w);
 }

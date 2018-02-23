@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/20 14:34:22 by modnosum          #+#    #+#              #
-#    Updated: 2018/02/21 23:39:29 by modnosum         ###   ########.fr        #
+#    Updated: 2018/02/23 18:47:49 by modnosum         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -57,7 +57,7 @@ clean:
 fclean: clean
 	@rm -fR $(NAME)
 	@$(MAKE) $(MFLAGS) $(FT_PATH) fclean
-ifneq ("./mlx",$(MLX_PATH))
+ifneq (1,$(MLX_PATH))
 	@$(MAKE) $(MFLAGS) $(MLX_PATH) clean
 endif
 	$(call PRINT,$(MAGENTA),"Removed $(NAME).")
@@ -81,7 +81,7 @@ $(FT_NAME): $(FT_DEP)
 	@cp $(FT_PATH)/$@ ./$@
 
 $(MLX_NAME): $(MLX_DEP)
-ifneq ("./mlx",$(MLX_PATH))
+ifneq (1,$(MLX_PATH))
 	@$(MAKE) $(MFLAGS) $(MLX_PATH)
 	@cp $(MLX_PATH)/$@ ./$@
 endif

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 11:16:56 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:38:31 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 #  define ESC_KC 53
 
 #  define Q_KC -1
-#  define W_KC -1
+#  define W_KC 13
 #  define E_KC -1
 #  define R_KC -1
 #  define T_KC -1
 #  define Y_KC -1
 #  define U_KC -1
-#  define I_KC -1
+#  define I_KC 34
 #  define O_KC -1
 #  define P_KC -1
-#  define A_KC -1
-#  define S_KC -1
-#  define D_KC -1
+#  define A_KC 0
+#  define S_KC 1
+#  define D_KC 2
 #  define F_KC -1
 #  define G_KC -1
 #  define H_KC -1
@@ -44,19 +44,18 @@
 #  define N_KC -1
 #  define M_KC -1
 
-#  define SPACE_KC -1
-#  define SPACE_KC -1
-#  define SHIFT_KC -1
+#  define SPACE_KC 49
+#  define SHIFT_KC 257
 #  define CTRL_KC -1
 #  define ALT_KC -1
 
-#  define UP_ARR_KC -1
-#  define LEFT_ARR_KC -1
-#  define DOWN_ARR_KC -1
-#  define RIGHT_ARR_KC -1
+#  define UP_ARR_KC 126
+#  define LEFT_ARR_KC 123
+#  define DOWN_ARR_KC 125
+#  define RIGHT_ARR_KC 124
 
-#  define NUM_PLUS_KC -1
-#  define NUM_MINUS_KC -1
+#  define NUM_PLUS_KC 69
+#  define NUM_MINUS_KC 78
 
 #  define NUM_1_KC -1
 #  define NUM_2_KC -1

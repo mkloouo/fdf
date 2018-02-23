@@ -6,11 +6,12 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:42:51 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 11:39:25 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:36:39 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <handlers.h>
+#include <stdio.h>
 
 int						key_press(int btn, t_env *env)
 {
@@ -22,5 +23,6 @@ int						key_press(int btn, t_env *env)
 	else if (ALT_BUTTON(btn))
 		env->kb->alt_pressed = 1;
 	key_handler(env, KEY_PRESS);
+	printf("key: %d\n", btn);
 	return (0);
 }

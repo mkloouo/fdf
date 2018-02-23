@@ -6,13 +6,12 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:29 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 03:20:23 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:35:44 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
 #include <libft.h>
-#include <math.h>
 
 /*
  * Reminder
@@ -33,8 +32,8 @@ static void				init_data(int *data, t_vec2i *v1, t_vec2i *v2)
 {
 	int					swap;
 
-	data[0] = fabs(v2->x - v1->x);
-	data[1] = fabs(v2->y - v1->y);
+	data[0] = ft_fabs(v2->x - v1->x);
+	data[1] = ft_fabs(v2->y - v1->y);
 	data[2] = (v2->x >= v1->x) ? (1) : (-1);
 	data[3] = (v2->y >= v1->y) ? (1) : (-1);
 	swap = !(data[1] <= data[0]);

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:41:16 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:10:17 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:35:41 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,34 @@ static void				scroll_handler(int btn, t_plain *pln)
 	scale_plain(pln, &v);
 }
 
-void					mouse_handler(t_env *env)
+void					mouse_handler(t_env *env, int event_type)
 {
 	t_mouse				*ms;
 	t_vec3f				v;
 
 	ms = env->ms;
-	if (ms->pressed)
+	if (event_type == MOTION_NOTIFY)
 	{
-		set_vec3f(&v, ms->cv->x - env->pln->tr->pos->x,
-				  ms->cv->y - env->pln->tr->pos->y, 0);
-		translate_plain(env->pln, &v);
+		if (ms->pressed && LEFT_BUTTON(env->ms->btn))
+		{
+			set_vec3f(&v, ms->cv->x - env->pln->tr->pos->x,
+					  ms->cv->y - env->pln->tr->pos->y, 0);
+			translate_plain(env->pln, &v);
+			update_env(env);
+		}
+		else if (ms->pressed && RIGHT_BUTTON(env->ms->btn))
+		{
+			set_vec3f(&v, ms->cv->y - env->pln->tr->rot->x,
+					  ms->cv->x - env->pln->tr->rot->y,
+					  (ms->cv->y + ms->cv->x) - env->pln->tr->rot->z);
+			rotate_plain(env->pln, &v);
+			update_env(env);
+		}
 	}
-	else if (MOUSE_SCROLL(ms->btn))
-		scroll_handler(ms->btn, env->pln);
-	else
-		return ;
-	update_env(env);
+	if (event_type == MOUSE_BUTTON_RELEASE)
+	{
+		if (MOUSE_SCROLL(ms->btn))
+			scroll_handler(ms->btn, env->pln);
+		update_env(env);
+	}
 }

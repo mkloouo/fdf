@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:14 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 03:12:19 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:17:01 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct			s_image
 
 t_image					*get_image(void *mlx, int w, int h);
 void					del_image(void *mlx, t_image **ip);
+void					print_image(t_image *img);
 
 void					draw_line(t_image *img, t_vec2i *v1, t_vec2i *v2, t_vec2i *c);
 void					put_pixel(t_image *img, t_vec2i *v, unsigned int c);

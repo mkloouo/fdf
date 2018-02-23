@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:12:20 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 02:58:29 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:49:27 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include <mouse.h>
 # include <keyboard.h>
 
-# define WIN_MIN_WIDTH 350
+# define WIN_MIN_WIDTH 400
 # define WIN_MAX_WIDTH 1200
-# define WIN_MIN_HEIGHT 350
+# define WIN_MIN_HEIGHT 400
 # define WIN_MAX_HEIGHT 900
 
-# define WIN_DEFAULT_WIDTH 500
-# define WIN_DEFAULT_HEIGHT 400
+# define WIN_DEFAULT_WIDTH 1200
+# define WIN_DEFAULT_HEIGHT 900
 
 typedef struct			s_env
 {

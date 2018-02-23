@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_vec3f.c                                      :+:      :+:    :+:   */
+/*   reset_plain.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/22 04:13:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:14:58 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/23 11:23:51 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/23 11:28:01 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
-#include <stdio.h>
+#include <plain.h>
 
-void					print_vec3f(t_vec3f *v)
+void					reset_plain(t_plain *pln)
 {
-	if (v)
+	if (pln && pln->tr)
 	{
-		printf("Vector:\n");
-		printf("(%.1f, %.1f, %.1f)\n", v->x, v->y, v->z);
+		set_vec3f(pln->tr->pos, DEFAULT_POSITION_X,
+				  DEFAULT_POSITION_Y, DEFAULT_POSITION_Z);
+		set_vec3f(pln->tr->scl, DEFAULT_SCALE,
+				  DEFAULT_SCALE, DEFAULT_SCALE);
+		set_vec3f(pln->tr->pos, DEFAULT_ROTATION_X,
+				  DEFAULT_ROTATION_Y, DEFAULT_ROTATION_Z);
 	}
 }

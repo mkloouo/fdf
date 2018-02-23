@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:16:52 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 02:10:43 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:47:28 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void					init_hooks(t_env *env)
 			 &ms_btn_press, env);
 	mlx_hook(env->win, MOUSE_BUTTON_RELEASE, MOUSE_BUTTON_RELEASE_MASK,
 			 &ms_btn_release, env);
+	mlx_hook(env->win, MOTION_NOTIFY, MOTION_NOTIFY_MASK, &ms_move,
+			 env);
 }

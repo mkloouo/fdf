@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:43:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:32:06 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:27:40 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@ t_env					*init_env(t_plain *pln, char *name)
 {
 	t_env				*env;
 	char				*title;
-	char				*temp;
 
 	if ((env = (t_env*)ft_memalloc(sizeof(t_env))))
 	{
 		env->mlx = NULL;
 		env->win = NULL;
-		temp = ft_strjoin(name, " : ");
-		title = ft_strjoin(temp, name);
-		ft_strdel(&temp);
+		title = name;
 		env->pln = pln;
 		env->img = NULL;
 		env->ms = init_mouse();

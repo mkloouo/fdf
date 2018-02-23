@@ -6,22 +6,22 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 21:19:42 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 00:45:43 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:53:55 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TRANSFORM_H
 # define TRANSFORM_H
 
-# define DEFAULT_SCALE 5
+# define DEFAULT_SCALE 10
 
-# define DEFAULT_ROTATION_X 5
-# define DEFAULT_ROTATION_Y 5
-# define DEFAULT_ROTATION_Z 5
+# define DEFAULT_ROTATION_X 90
+# define DEFAULT_ROTATION_Y 90
+# define DEFAULT_ROTATION_Z 90
 
-# define DEFAULT_POSITION_X 5
-# define DEFAULT_POSITION_Y 5
-# define DEFAULT_POSITION_Z 5
+# define DEFAULT_POSITION_X 100
+# define DEFAULT_POSITION_Y 100
+# define DEFAULT_POSITION_Z 100
 
 #include <vector.h>
 

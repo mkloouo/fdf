@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 03:28:58 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:28:22 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int						parse_color(char *word);
 void					translate_plain(t_plain *pln, t_vec3f *pos);
 void					rotate_plain(t_plain *pln, t_vec3f *rot);
 void					scale_plain(t_plain *pln, t_vec3f *scl);
+void					reset_plain(t_plain *pln);
 
 t_plain					*get_plain(char *file, int w, int h);
 void					del_plain(t_plain **pp);

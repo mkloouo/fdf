@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 19:49:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:00:34 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:25:01 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@
 /*
  * Press vector
  * Release vector
- * Current vector
- * Press button
- * Release button
+ * Current position vector
+ * Current p/r button
+ * Is button being pressed
  */
 
 typedef struct			s_mouse
@@ -64,7 +64,6 @@ typedef struct			s_mouse
 
 t_mouse					*init_mouse(void);
 void					del_mouse(t_mouse **mp);
-
 void					print_mouse(t_mouse *ms);
 
 #endif

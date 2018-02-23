@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:27:58 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 23:02:20 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:14:45 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@
 
 int						key_press(int btn, t_env *env);
 int						key_release(int btn, t_env *env);
-void					key_handler(int btn, t_env *env);
+void					key_handler(t_env *env, int event_type);
 
 int						ms_btn_press(int btn, int x, int y, t_env *env);
 int						ms_btn_release(int btn, int x, int y, t_env *env);
 int						ms_move(int x, int y, t_env *env);
-void					mouse_handler(t_env *env);
-
+void					mouse_handler(t_env *env, int event_type);
 #endif

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_vec3f.c                                      :+:      :+:    :+:   */
+/*   print_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/22 04:13:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:14:58 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 17:15:50 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 17:18:31 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
+#include <image.h>
 #include <stdio.h>
 
-void					print_vec3f(t_vec3f *v)
+void					print_image(t_image *img)
 {
-	if (v)
+	printf("Image:\n");
+	if (img)
 	{
-		printf("Vector:\n");
-		printf("(%.1f, %.1f, %.1f)\n", v->x, v->y, v->z);
+		printf("Bit per pixel: %d\n", img->bp);
+		printf("Line size: %d\n", img->sl);
+		printf("Image endian: %d\n", img->en);
+		printf("Local endian: %d\n", img->le);
+		printf("Width: %d\n", img->w);
+		printf("Height: %d\n", img->h);		
 	}
 }

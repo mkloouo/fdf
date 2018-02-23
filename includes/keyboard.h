@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 03:57:42 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 11:16:56 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 #  define T_KC 116
 #  define Y_KC 121
 #  define U_KC -1
-#  define I_KC -1
+#  define I_KC 105
 #  define O_KC -1
 #  define P_KC -1
 #  define A_KC 97
@@ -96,10 +96,10 @@
 #  define N_KC -1
 #  define M_KC -1
 
-#  define SPACE_KC -1
-#  define SHIFT_KC -1
-#  define CTRL_KC -1
-#  define ALT_KC -1
+#  define SPACE_KC 32
+#  define SHIFT_KC 65505
+#  define CTRL_KC 65507
+#  define ALT_KC 65513
 
 #  define UP_ARR_KC 65362
 #  define LEFT_ARR_KC 65361
@@ -135,11 +135,19 @@
 
 # define ZOOM_BUTTON(B) (ZOOM_IN(B) || ZOOM_OUT(B))
 
+# define INFO_BUTTON(B) (B == I_KC)
+
+# define SHIFT_BUTTON(B) (B == SHIFT_KC)
+# define CTRL_BUTTON(B) (B == CTRL_KC)
+# define ALT_BUTTON(B) (B == ALT_KC)
+# define RESET_BUTTON(B) (B == SPACE_KC)
+
 typedef struct			s_keyboard
 {
 	int					ctrl_pressed;
 	int					shift_pressed;
 	int					alt_pressed;
+	int					ck;
 }						t_keyboard;
 
 t_keyboard				*init_keyboard(void);

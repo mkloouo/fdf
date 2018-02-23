@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_vec3f.c                                      :+:      :+:    :+:   */
+/*   print_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/22 04:13:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:14:58 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/22 17:18:47 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/22 17:20:27 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector.h>
+#include <mouse.h>
 #include <stdio.h>
 
-void					print_vec3f(t_vec3f *v)
+void					print_mouse(t_mouse *ms)
 {
-	if (v)
+	printf("Mouse:\n");
+	if (ms)
 	{
-		printf("Vector:\n");
-		printf("(%.1f, %.1f, %.1f)\n", v->x, v->y, v->z);
+		printf("Pressed:\n");
+		print_vec2i(ms->pv);
+		printf("Released:\n");
+		print_vec2i(ms->rv);
+		printf("Current:\n");
+		print_vec2i(ms->cv);
 	}
 }

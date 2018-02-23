@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:46:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:29:10 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/22 17:34:59 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ void					del_plain(t_plain **pp)
 			j = 0;
 			while (j < (*pp)->w)
 			{
-				if ((*pp)->va[i][j] == NULL || (*pp)->ca[i] == NULL)
-					break ;
 				del_vec3f((((*pp)->va[i]) + j));
 				j++;
 			}
 			ft_memdel((void**)((*pp)->va + i));
+			ft_memdel((void**)((*pp)->ca + i));
 			i++;
 		}
+		ft_memdel((void**)(&(*pp)->va));
+		ft_memdel((void**)(&(*pp)->ca));
 		del_transf(&(*pp)->tr);
 		ft_memdel((void**)pp);
 	}

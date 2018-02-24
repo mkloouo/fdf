@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:41:16 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:43:25 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 05:29:34 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void				left_button_handler(t_env *env)
 	t_vec3f				v;
 
 	set_vec3f(&v, (env->ms->cv->x - env->ms->pv->x),
-				(env->ms->cv->y - env->ms->pv->y), 0);
+				-(env->ms->cv->y - env->ms->pv->y), 0);
 	env->ms->pv->x = env->ms->cv->x;
 	env->ms->pv->y = env->ms->cv->y;
 	translate_plain(env->pln, &v);
@@ -40,9 +40,8 @@ static void				right_button_handler(t_env *env)
 {
 	t_vec3f				v;
 
-	set_vec3f(&v, (env->ms->cv->x - env->ms->pv->x) / 16,
-				(env->ms->cv->y - env->ms->pv->y) / 16,
-			  (env->ms->cv->y - env->ms->cv->x) / 16);
+	set_vec3f(&v,-(env->ms->cv->y - env->ms->pv->y),
+			  (env->ms->cv->x - env->ms->pv->x),0);
 	env->ms->pv->x = env->ms->cv->x;
 	env->ms->pv->y = env->ms->cv->y;
 	rotate_plain(env->pln, &v);
@@ -54,11 +53,11 @@ void					mouse_handler(t_env *env, int event_type)
 	t_mouse				*ms;
 
 	ms = env->ms;
-	if (event_type == MOTION_NOTIFY)
+	if (event_type == MOTION_NOTIFY && ms->pressed)
 	{
-		if (ms->pressed && LEFT_BUTTON(env->ms->btn))
+		if (LEFT_BUTTON(env->ms->btn))
 			left_button_handler(env);
-		else if (ms->pressed && RIGHT_BUTTON(env->ms->btn))
+		else if (RIGHT_BUTTON(env->ms->btn))
 			right_button_handler(env);
 	}
 	if (event_type == MOUSE_BUTTON_PRESS)

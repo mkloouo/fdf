@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:20:50 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:09:08 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 04:06:52 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ typedef struct			s_vec2i
 t_vec3f					*get_vec3f(float x, float y, float z);
 void					set_vec3f(t_vec3f *v, float x, float y, float z);
 void					del_vec3f(t_vec3f **vp);
+
+float					len_vec3f(t_vec3f *v);
+void					norm_vec3f(t_vec3f *v);
+float					dot_vec3f(t_vec3f *a, t_vec3f *b);
+t_vec3f					*cross_vec3f(t_vec3f *a, t_vec3f *b);
+t_vec3f					*sub_vec3f(t_vec3f *a, t_vec3f *b);
+t_vec3f					*add_vec3f(t_vec3f *a, t_vec3f *b);
+t_vec3f					*mult_vec3f(t_vec3f *a, t_vec3f *b);
 
 void					print_vec3f(t_vec3f *v);
 

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:29 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 18:35:44 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 23:33:41 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include <libft.h>
 
 /*
- * Reminder
- * dx == data[0] --> will be swapped with dy if dy > dx
- * dy == data[1]
- * sx == data[2] --> will be swapped with sy if dy > dx
- * sy == data[3]
- * d == data[4]
- * d1 == data[5]
- * d2 == data[6]
- * x == data[7] --> will be swapped with y if dy > dx
- * y == data[8] 
- * i == data[9]
- * swap == data[10] --> 1 if swapped, 0 otherwise
- */
+** Reminder
+** dx == data[0] --> will be swapped with dy if dy > dx
+** dy == data[1]
+** sx == data[2] --> will be swapped with sy if dy > dx
+** sy == data[3]
+** d == data[4]
+** d1 == data[5]
+** d2 == data[6]
+** x == data[7] --> will be swapped with y if dy > dx
+** y == data[8]
+** i == data[9]
+** swap == data[10] --> 1 if swapped, 0 otherwise
+*/
 
-static void				init_data(int *data, t_vec2i *v1, t_vec2i *v2)
+static void				init_data(int *data, t_vec3i *v1, t_vec3i *v2)
 {
 	int					swap;
 
@@ -51,25 +51,30 @@ static void				init_data(int *data, t_vec2i *v1, t_vec2i *v2)
 	data[10] = swap;
 }
 
-void					draw_line(t_image *img, t_vec2i *v1, t_vec2i *v2, t_vec2i *c)
+void					draw_line(t_image *img, t_vec3i *p1, t_vec3i *p2)
 {
 	int					data[11];
-	t_vec2i				v;
+	t_vec3i				v;
 
-	init_data(data, v1, v2);
-	put_pixel(img, v1, c->x);
-	while (data[9] <= data[0])
+	if (IN_IMAGE(p1, img->w, img->h) || IN_IMAGE(p2, img->w, img->h))
 	{
-		if (data[4] > 0)
+		init_data(data, p1, p2);
+		put_pixel(img, p1);
+		while (data[9] <= data[0])
 		{
-			data[4] += data[6];
-			data[8] += data[3];
+			if (data[4] > 0)
+			{
+				data[4] += data[6];
+				data[8] += data[3];
+			}
+			else
+				data[4] += data[5];
+			set_vec3i(&v, (data[10] ? data[8] : data[7]), (data[10] ? data[7] :
+															data[8]),
+				map_color(p1->z, p2->z, ((float)data[9] / data[0])));
+			put_pixel(img, &v);
+			data[9]++;
+			data[7] += data[2];
 		}
-		else
-			data[4] += data[5];
-		set_vec2i(&v, data[(data[10] ? 8 : 7)], data[(data[10] ? 7 : 8)]);
-		put_pixel(img, &v, map_color(c->x, c->y, ((float)data[9] / data[0])));
-		data[9]++;
-		data[7] += data[2];
 	}
 }

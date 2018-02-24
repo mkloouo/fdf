@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:12:20 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 11:49:27 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 19:08:41 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_env					*init_env(t_plain *pln, char *name);
 void					del_env(t_env **ep);
 void					print_env(t_env *env);
 
-int						parse_args(t_env *env, int ac, char **av);
+void					parse_args(t_env *env, int ac, char **av);
 void					setup_window(t_env *env);
 void					init_hooks(t_env *env);
 void					start_env(t_env *env);

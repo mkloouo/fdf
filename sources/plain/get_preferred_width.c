@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 02:47:31 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 02:52:00 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 00:21:09 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int						get_preferred_width(t_plain *pln)
 {
 	int					w;
 
-	w = pln->tr->scl->x * pln->w;
+	w = pln->tr->scl->x * pln->w;	
 	return (w);
 }

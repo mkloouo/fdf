@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 17:15:50 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:18:31 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 01:49:46 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void					print_image(t_image *img)
 		printf("Image endian: %d\n", img->en);
 		printf("Local endian: %d\n", img->le);
 		printf("Width: %d\n", img->w);
-		printf("Height: %d\n", img->h);		
+		printf("Height: %d\n", img->h);
+		printf("Global coords:\n");
+		print_vec2i(img->coord);
 	}
 }

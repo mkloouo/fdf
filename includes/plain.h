@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 11:28:22 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 00:28:33 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@
 # include <vector.h>
 # include <transform.h>
 
-# define DEFAULT_COLOR 0x0091278f
+# define DEFAULT_COLOR 0x00008080
 
 /*
- * Vector array
- * Color arra
- * Transform
- * Width
- * Height
- */
+** Vector array
+** Color arra
+** Transform
+** Width
+** Height
+*/
 
 typedef struct			s_plain
 {
 	t_vec3f				***va;
-	int					**ca;
 	t_transf			*tr;
 	int					w;
 	int					h;

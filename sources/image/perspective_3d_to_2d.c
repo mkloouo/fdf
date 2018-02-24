@@ -6,14 +6,14 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:56:36 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:42:56 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 01:12:12 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
 #include <math.h>
 
-# define RAD 0.017453
+#define RAD 0.017453
 
 static void				init_data(float *data, t_vec3f *rot)
 {
@@ -32,21 +32,20 @@ static void				init_data(float *data, t_vec3f *rot)
 	data[8] = cos(z_rad);
 }
 
-t_vec2i					*perspective_3d_to_2d(t_vec3f *v, t_transf *tv,
-											  int row, int col)
+t_vec3i					*perspective_3d_to_2d(t_vec3f *v, t_plain *pln)
 {
-	t_vec2i				*p;
+	t_vec3i				*p;
 	float				data[9];
 
-	init_data(data, tv->rot);
-	data[0] = v->x + (row * tv->scl->x);
-	data[1] = v->y + (col * tv->scl->y);
-	data[2] = v->z * tv->scl->z;
-	p = get_vec2i(((data[0] * data[6] - (data[2] * data[4] - data[1] *
+	init_data(data, pln->tr->rot);
+	data[0] = v->x * pln->tr->scl->x;
+	data[1] = v->y * pln->tr->scl->y;
+	data[2] = v->z * pln->tr->scl->z;
+	p = get_vec3i(((data[0] * data[6] - (data[2] * data[4] - data[1] *
 		data[3]) * data[5]) * data[8] + (data[1] * data[4] +
 		data[2] * data[3]) * data[7]), (((data[1] * data[4] +
 		data[2] * data[3])) * data[4] - (data[0] * data[6] -
 		(data[2] * data[4] - data[1] * data[3]) * data[5]) *
-		data[7]));
+										data[7]), v->v);
 	return (p);
 }

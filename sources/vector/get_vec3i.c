@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_plain.c                                        :+:      :+:    :+:   */
+/*   get_vec3i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:46:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:11:42 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/23 20:40:21 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/23 20:40:39 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
+#include <vector.h>
 #include <libft.h>
 
-void					del_plain(t_plain **pp)
+t_vec3i					*get_vec3i(int x, int y, int z)
 {
-	int					i;
-	int					j;
+	t_vec3i			*v;
 
-	if (pp && *pp)
+	if ((v = (t_vec3i*)ft_memalloc(sizeof(t_vec3i))))
 	{
-		i = 0;
-		while (i < (*pp)->h)
-		{
-			j = 0;
-			while (j < (*pp)->w)
-			{
-				del_vec3f((((*pp)->va[i]) + j));
-				j++;
-			}
-			ft_memdel((void**)((*pp)->va + i));
-			i++;
-		}
-		ft_memdel((void**)(&(*pp)->va));
-		del_transf(&(*pp)->tr);
-		ft_memdel((void**)pp);
+		v->x = x;
+		v->y = y;
+		v->z = z;
 	}
+	return (v);
 }

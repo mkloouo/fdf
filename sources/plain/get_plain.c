@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:41 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:20:43 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 00:11:27 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ t_plain					*get_plain(char *file, int w, int h)
 	if ((pln = (t_plain*)ft_memalloc(sizeof(t_plain))))
 	{
 		if (h == 0 ||
-			!(pln->va = (t_vec3f***)ft_memalloc(sizeof(t_plain**) * h)) ||
-			!(pln->ca = (int**)ft_memalloc(sizeof(int*) * h)))
+			!(pln->va = (t_vec3f***)ft_memalloc(sizeof(t_plain**) * h)))
 		{
 			ft_memdel((void**)&pln);
 			return (NULL);

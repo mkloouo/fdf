@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:13:03 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:13:42 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 02:07:31 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void					print_vec2i(t_vec2i *v)
 {
 	if (v)
 	{
-		printf("vector:\n");
-		printf("x: %d\ny: %d\n", v->x, v->y);
+		printf("Vector:\n");
+		printf("(%d, %d)\n", v->x, v->y);
 	}
 }

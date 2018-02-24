@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 19:49:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:25:01 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 23:42:30 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 #  define MS_RB_KC 3
 #  define MS_MB_KC 2
 #  define MS_SCROLL_UP_KC 4
+#  define MS_SCROLL_DOWN_KC 5
 #  define MS_SCROLL_RIGHT_KC -1
 #  define MS_SCROLL_LEFT_KC -1
-#  define MS_SCROLL_DOWN_KC 5
 
 # endif
 
@@ -46,12 +46,12 @@
 # include <vector.h>
 
 /*
- * Press vector
- * Release vector
- * Current position vector
- * Current p/r button
- * Is button being pressed
- */
+** Press vector
+** Release vector
+** Current position vector
+** Current p/r button
+** Is button being pressed
+*/
 
 typedef struct			s_mouse
 {

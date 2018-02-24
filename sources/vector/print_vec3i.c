@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_plain.c                                        :+:      :+:    :+:   */
+/*   print_vec3i.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 22:46:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:11:42 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/23 20:41:44 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/23 20:41:57 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <plain.h>
-#include <libft.h>
+#include <vector.h>
+#include <stdio.h>
 
-void					del_plain(t_plain **pp)
+void					print_vec3i(t_vec3i *v)
 {
-	int					i;
-	int					j;
-
-	if (pp && *pp)
+	if (v)
 	{
-		i = 0;
-		while (i < (*pp)->h)
-		{
-			j = 0;
-			while (j < (*pp)->w)
-			{
-				del_vec3f((((*pp)->va[i]) + j));
-				j++;
-			}
-			ft_memdel((void**)((*pp)->va + i));
-			i++;
-		}
-		ft_memdel((void**)(&(*pp)->va));
-		del_transf(&(*pp)->tr);
-		ft_memdel((void**)pp);
+		printf("vector:\n");
+		printf("x: %d\ny: %dz: %d\n", v->x, v->y, v->z);
 	}
 }

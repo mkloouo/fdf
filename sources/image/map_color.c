@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:15:20 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/21 00:00:54 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/23 23:32:06 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ unsigned int			map_color(unsigned int c1, unsigned int c2, float ratio)
 	unsigned int		g;
 	unsigned int		b;
 
-	a = (int)(((c2 & 0xFF000000) >> 24) * ratio + ((c1 & 0xFF000000) >> 24) *
-			  (1 - ratio));
-	r = (int)(((c2 & 0x00FF0000) >> 16) * ratio + ((c1 & 0x00FF0000) >> 16) *
-			  (1 - ratio));
-	g = (int)(((c2 &  0x0000FF00) >> 8) * ratio + ((c1 & 0x0000FF00) >> 8) *
-			  (1 - ratio));
-	b = (int)((c2 &  0x000000FF) * ratio + (c1 &  0x000000FF) *
-			  (1 - ratio));
-	return ((a << 24) | (r << 16) | (g << 8) | b);
+	a = (int)(((c2 & 0xFF000000) >> 24) * ratio
+			+ ((c1 & 0xFF000000) >> 24) * (1 - ratio));
+	r = (int)(((c2 & 0x00FF0000) >> 16) * ratio
+			+ ((c1 & 0x00FF0000) >> 16) * (1 - ratio));
+	g = (int)(((c2 & 0x0000FF00) >> 8) * ratio
+			+ ((c1 & 0x0000FF00) >> 8) * (1 - ratio));
+	b = (int)((c2 & 0x000000FF) * ratio
+			+ (c1 & 0x000000FF) * (1 - ratio));
+	return (RGB_COLOR(a, r, g, b));
 }

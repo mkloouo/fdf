@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:34:14 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/24 00:18:18 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,34 @@
 #include <errno.h>
 #include <stdlib.h>
 
-static int			validate_args(int ac, char *name)
+static int				validate_args(int ac, char **av)
 {
-	if (ac < 2 || ac > 10)
+	int				i;
+
+	if (ac >= 2 && ac <= 10 && ac % 2 == 0)
 	{
-		ft_putstr("usage: ");
-		ft_putstr(name);
-		ft_putendl((" [-s <step>] [-z <z-scale>] "
-					"[-w <width>] [-h <height>] map-file"));
-		return (0);
+		i = 1;
+		while (i < (ac - 1))
+		{
+			if (!(ft_strlen(av[i]) == 2 && av[i][0] == '-' &&
+					(av[i][1] == 's' || av[i][1] == 'z' || av[i][1] == 'w' ||
+					av[i][1] == 'h')))
+				return (0);
+			i += 2;
+		}
+		return (1);
 	}
-	return (1);
+	ft_putstr("usage: ");
+	ft_putstr(av[0]);
+	ft_putendl((" [-s <step>] [-z <z-scale>]\n"
+				"[-w <width>] [-h <height>] map-file"));
+	return (0);
 }
 
 static void				exit_error(char *name, char *msg)
 {
-	if (msg)
+	printf("errno: %d\n", errno);
+	if (msg && errno <= 2)
 	{
 		ft_putstr(name);
 		ft_putstr(": ");
@@ -47,7 +59,7 @@ int						main(int ac, char **av)
 	t_plain				*pln;
 	t_env				*env;
 
-	if (validate_args(ac, av[0]))
+	if (validate_args(ac, av))
 	{
 		pln = plain_parse_file(av[ac - 1]);
 		if (pln == NULL)
@@ -58,11 +70,7 @@ int						main(int ac, char **av)
 			del_plain(&pln);
 			exit_error(av[0], NULL);
 		}
-		if (parse_args(env, ac - 1, av) == 0)
-		{
-			del_env(&env);
-			exit_error(av[0], "Invalid argument");
-		}
+		parse_args(env, ac - 1, av);
 		start_env(env);
 		return (0);
 	}

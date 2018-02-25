@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 19:39:14 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 23:11:55 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,20 @@ t_plain					*parse_line(t_plain *pln, char *line, int row)
 {
 	int					len;
 	int					i;
+	int					cent_x;
+	int					cent_y;
 
 	i = 0;
 	if (!(len = validate_length(line, pln)) ||
 		!(pln->va[row] = (t_vec3f**)ft_memalloc(sizeof(t_vec3f*) * pln->w)))
 		del_plain(&pln);
+	cent_x = pln->w / 2;
+	cent_y = pln->h / 2;
 	while (i < len)
 	{
 		skip_char(&line, ' ', 0);
-		if (!(pln->va[row][i] = get_vec3f(i, row, ft_atof(line))))
+		if (!(pln->va[row][i] = get_vec3f(i - cent_x,
+											row - cent_y, ft_atof(line))))
 		{
 			del_plain(&pln);
 			break ;

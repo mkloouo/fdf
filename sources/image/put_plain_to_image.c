@@ -6,20 +6,24 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:29:45 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 20:48:47 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 23:13:36 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <image.h>
 #include <libft.h>
 
-static t_vec3i			***init_vec3i_data(t_plain *pln)
+static t_vec3i			***init_vec3i_data(t_image *img, t_plain *pln)
 {
 	t_vec3i				***arr;
 	int					i;
 	int					j;
+	int					x_cent;
+	int					y_cent;
 
 	i = 0;
+	x_cent = img->w / 2;
+	y_cent = img->h / 2;
 	arr = (t_vec3i***)ft_memalloc(sizeof(t_vec3i**) * pln->h);
 	while (i < pln->h)
 	{
@@ -28,8 +32,8 @@ static t_vec3i			***init_vec3i_data(t_plain *pln)
 		while (j < pln->w)
 		{
 			arr[i][j] = ortho_3d_to_2d(pln->va[i][j], pln);
-			set_vec3i(arr[i][j], arr[i][j]->x + pln->tr->pos->x,
-						arr[i][j]->y + pln->tr->pos->y, arr[i][j]->z);
+			set_vec3i(arr[i][j], x_cent + arr[i][j]->x + pln->tr->pos->x,
+					  y_cent + arr[i][j]->y + pln->tr->pos->y, arr[i][j]->z);
 			j++;
 		}
 		i++;
@@ -63,7 +67,7 @@ void					put_plain_to_image(t_plain *pln, t_image *img)
 	int					i;
 	int					j;
 
-	arr = init_vec3i_data(pln);
+	arr = init_vec3i_data(img, pln);
 	if (pln->h == 1 && pln->w == 1)
 		put_pixel(img, arr[0][0]);
 	else

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:41:16 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 05:29:34 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 18:45:06 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void				left_button_handler(t_env *env)
 	t_vec3f				v;
 
 	set_vec3f(&v, (env->ms->cv->x - env->ms->pv->x),
-				-(env->ms->cv->y - env->ms->pv->y), 0);
+				(env->ms->cv->y - env->ms->pv->y), 0);
 	env->ms->pv->x = env->ms->cv->x;
 	env->ms->pv->y = env->ms->cv->y;
 	translate_plain(env->pln, &v);
@@ -40,8 +40,8 @@ static void				right_button_handler(t_env *env)
 {
 	t_vec3f				v;
 
-	set_vec3f(&v,-(env->ms->cv->y - env->ms->pv->y),
-			  (env->ms->cv->x - env->ms->pv->x),0);
+	set_vec3f(&v, (env->ms->cv->y - env->ms->pv->y),
+				-(env->ms->cv->x - env->ms->pv->x), 0);
 	env->ms->pv->x = env->ms->cv->x;
 	env->ms->pv->y = env->ms->cv->y;
 	rotate_plain(env->pln, &v);

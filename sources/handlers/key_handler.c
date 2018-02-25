@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:41:21 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 23:23:38 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 17:18:37 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 static void				zoom_handler(t_keyboard *kb, t_env *env)
 {
+	float				val;
 	t_vec3f				v;
-	int					val;
 
-	val = ZOOM_IN(kb->ck) ? (1) : (-1);
+	val = ZOOM_IN(kb->ck) ? (0.2) : (-0.2);
 	set_vec3f(&v, val, val, val);
 	scale_plain(env->pln, &v);
 }

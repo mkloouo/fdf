@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:14 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 02:15:50 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 17:14:14 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <plain.h>
 # include <vector.h>
 
-# define IN_IMAGE(V,W,H) (V->x > -W && V->x < W && V->y > -H && V->y < H)
+# define IN_IMAGE(X,Y,W,H) (X >= 0 && X < W && Y >= 0 && Y < H)
 # define RGB_COLOR(A,R,G,B) ((A << 24) | (R << 16) | (G << 8) | (B))
 
 /*
@@ -40,7 +40,6 @@ typedef struct			s_image
 	int					le;
 	int					w;
 	int					h;
-	t_vec2i				*coord;
 }						t_image;
 
 t_image					*get_image(void *mlx, int w, int h);
@@ -53,7 +52,6 @@ unsigned int			map_color(unsigned int c1, unsigned int c2,
 									float ratio);
 
 void					put_plain_to_image(t_plain *pln, t_image *img);
-t_vec3i					*perspective_3d_to_2d(t_vec3f *v, t_plain *pln);
-void					transfer_coord(t_image *img, t_plain *pln);
+t_vec3i					*ortho_3d_to_2d(t_vec3f *v, t_plain *pln);
 
 #endif

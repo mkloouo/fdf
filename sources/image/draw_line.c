@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:29 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 23:33:41 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 19:30:33 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void					draw_line(t_image *img, t_vec3i *p1, t_vec3i *p2)
 	int					data[11];
 	t_vec3i				v;
 
-	if (IN_IMAGE(p1, img->w, img->h) || IN_IMAGE(p2, img->w, img->h))
+	if (IN_IMAGE(p1->x, p1->y, img->w, img->h) ||
+		IN_IMAGE(p2->x, p2->y, img->w, img->h))
 	{
 		init_data(data, p1, p2);
 		put_pixel(img, p1);
@@ -69,9 +70,9 @@ void					draw_line(t_image *img, t_vec3i *p1, t_vec3i *p2)
 			}
 			else
 				data[4] += data[5];
-			set_vec3i(&v, (data[10] ? data[8] : data[7]), (data[10] ? data[7] :
-															data[8]),
-				map_color(p1->z, p2->z, ((float)data[9] / data[0])));
+			set_vec3i(&v, (data[10] ? data[8] : data[7]),
+						(data[10] ? data[7] : data[8]),
+						map_color(p1->z, p2->z, ((float)data[9] / data[0])));
 			put_pixel(img, &v);
 			data[9]++;
 			data[7] += data[2];

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perspective_3d_to_2d.c                             :+:      :+:    :+:   */
+/*   ortho_3d_to_2d.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 16:56:36 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 01:12:12 by modnosum         ###   ########.fr       */
+/*   Created: 2018/02/25 16:40:33 by modnosum          #+#    #+#             */
+/*   Updated: 2018/02/25 16:44:15 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void				init_data(float *data, t_vec3f *rot)
 	data[8] = cos(z_rad);
 }
 
-t_vec3i					*perspective_3d_to_2d(t_vec3f *v, t_plain *pln)
+t_vec3i					*ortho_3d_to_2d(t_vec3f *v, t_plain *pln)
 {
 	t_vec3i				*p;
 	float				data[9];

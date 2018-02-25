@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:31 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 02:08:30 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 17:33:28 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ t_image					*get_image(void *mlx, int w, int h)
 		img->le = (((unsigned char*)&img->le)[0] == 0x11) ? (1) : (0);
 		img->w = w;
 		img->h = h;
-		if (w != 0 && h != 0)
-			img->coord = get_vec2i(w / 2, h / 2);
-		else
-			img->coord = get_vec2i(0, 0);
 	}
 	return (img);
 }

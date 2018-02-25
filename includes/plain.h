@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:28:33 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 17:31:12 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,5 @@ void					reset_plain(t_plain *pln);
 t_plain					*get_plain(char *file, int w, int h);
 void					del_plain(t_plain **pp);
 void					print_plain(t_plain *pln);
-
-int						get_preferred_width(t_plain *pln);
-int						get_preferred_height(t_plain *pln);
 
 #endif

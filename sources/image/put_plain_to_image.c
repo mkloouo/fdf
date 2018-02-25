@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:29:45 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 19:29:53 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 20:48:47 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void					put_plain_to_image(t_plain *pln, t_image *img)
 			{
 				if (j < pln->w - 1)
 					draw_line(img, arr[i][j], arr[i][j + 1]);
+				if (i < pln->h - 1 && j < pln->w - 1)
+					draw_line(img, arr[i][j], arr[i + 1][j + 1]);
 				if (i < pln->h - 1)
 					draw_line(img, arr[i][j], arr[i + 1][j]);
 				j++;

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:42:51 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 18:36:39 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 23:34:08 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int						key_press(int btn, t_env *env)
 	else if (ALT_BUTTON(btn))
 		env->kb->alt_pressed = 1;
 	key_handler(env, KEY_PRESS);
-	printf("key: %d\n", btn);
 	return (0);
 }

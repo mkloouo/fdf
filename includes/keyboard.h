@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 18:38:31 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/25 23:32:58 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #  define Q_KC -1
 #  define W_KC 13
 #  define E_KC -1
-#  define R_KC -1
+#  define R_KC 15
 #  define T_KC -1
 #  define Y_KC -1
 #  define U_KC -1
@@ -43,6 +43,8 @@
 #  define B_KC -1
 #  define N_KC -1
 #  define M_KC -1
+#  define MINUS_KC 27
+#  define EQUAL_KC 24
 
 #  define SPACE_KC 49
 #  define SHIFT_KC 257
@@ -130,16 +132,18 @@
 # define MOVE_BUTTON(B) (MOVE_HOR(B) || MOVE_VER(B))
 
 # define ZOOM_IN(B) (B == NUM_PLUS_KC)
-# define ZOOM_OUT(B) (B == NUM_MINUS_KC)
+# define EQUAL_BUTTON(B) (B == EQUAL_KC)
 
-# define ZOOM_BUTTON(B) (ZOOM_IN(B) || ZOOM_OUT(B))
+# define ZOOM_OUT(B) (B == NUM_MINUS_KC || B == MINUS_KC)
+
+# define ZOOM_BUTTON(B) (ZOOM_IN(B) || ZOOM_OUT(B) || EQUAL_BUTTON(B))
 
 # define INFO_BUTTON(B) (B == I_KC)
+# define RESET_BUTTON(B) (B == R_KC)
 
 # define SHIFT_BUTTON(B) (B == SHIFT_KC)
 # define CTRL_BUTTON(B) (B == CTRL_KC)
 # define ALT_BUTTON(B) (B == ALT_KC)
-# define RESET_BUTTON(B) (B == SPACE_KC)
 
 typedef struct			s_keyboard
 {

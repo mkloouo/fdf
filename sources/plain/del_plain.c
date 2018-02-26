@@ -6,14 +6,14 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:46:22 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:11:42 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:37:30 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
 #include <libft.h>
 
-void					del_plain(t_plain **pp)
+void					del_plain(t_plain **pp, int row, int col)
 {
 	int					i;
 	int					j;
@@ -26,9 +26,13 @@ void					del_plain(t_plain **pp)
 			j = 0;
 			while (j < (*pp)->w)
 			{
+				if (i == row && j == col)
+					break ;
 				del_vec3f((((*pp)->va[i]) + j));
 				j++;
 			}
+			if (i == row && j == col)
+				break ;
 			ft_memdel((void**)((*pp)->va + i));
 			i++;
 		}

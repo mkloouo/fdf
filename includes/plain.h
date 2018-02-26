@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 17:31:12 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:32:59 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void					scale_plain(t_plain *pln, t_vec3f *scl);
 void					reset_plain(t_plain *pln);
 
 t_plain					*get_plain(char *file, int w, int h);
-void					del_plain(t_plain **pp);
+void					del_plain(t_plain **pp, int row, int col);
 void					print_plain(t_plain *pln);
 
 #endif

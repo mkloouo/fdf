@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 23:40:26 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 19:23:41 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:36:06 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_plain					*plain_parse_file(char *file)
 		}
 		skip_invalid_file(fd);
 		if (fd == -1 || r == -1)
-			del_plain(&pln);
+			del_plain(&pln, pln->h, pln->w);
 		else
 			close_file(fd);
 	}

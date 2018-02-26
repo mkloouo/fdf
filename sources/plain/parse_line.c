@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 23:11:55 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:35:37 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int				validate_length(char *line, t_plain *pln)
 		if (*line)
 		{
 			len++;
-			skip_char(&line, ' ', 1);
+			if (*line)
+				skip_char(&line, ' ', 1);
 		}
 	}
 	if (pln->w == 0)
@@ -53,20 +54,23 @@ t_plain					*parse_line(t_plain *pln, char *line, int row)
 	i = 0;
 	if (!(len = validate_length(line, pln)) ||
 		!(pln->va[row] = (t_vec3f**)ft_memalloc(sizeof(t_vec3f*) * pln->w)))
-		del_plain(&pln);
-	cent_x = pln->w / 2;
-	cent_y = pln->h / 2;
-	while (i < len)
+		del_plain(&pln, row, 0);
+	else
 	{
-		skip_char(&line, ' ', 0);
-		if (!(pln->va[row][i] = get_vec3f(i - cent_x,
-											row - cent_y, ft_atof(line))))
+		cent_x = pln->w / 2;
+		cent_y = pln->h / 2;
+		while (i < len && *line)
 		{
-			del_plain(&pln);
-			break ;
+			skip_char(&line, ' ', 0);
+			if (!(pln->va[row][i] = get_vec3f(i - cent_x,
+											  row - cent_y, ft_atof(line))))
+			{
+				del_plain(&pln, row, i);
+				break ;
+			}
+			pln->va[row][i++]->v = parse_color(line);
+			skip_char(&line, ' ', 1);
 		}
-		pln->va[row][i++]->v = parse_color(line);
-		skip_char(&line, ' ', 1);
 	}
 	return (pln);
 }

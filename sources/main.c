@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 19:25:47 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:40:51 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void				exit_error(char *name, char *msg)
 {
-	if (msg)
+	if (msg && errno == 2)
 	{
 		ft_putstr(name);
 		ft_putstr(": ");
@@ -42,13 +42,17 @@ int						main(int ac, char **av)
 		env = init_env(pln, av[0]);
 		if (env == NULL)
 		{
-			del_plain(&pln);
+			del_plain(&pln, pln->h, pln->w);
 			exit_error(av[0], NULL);
 		}
 		start_env(env);
 		return (0);
 	}
 	else
-		ft_putendl("usage: fdf <map-file>");
+	{
+		ft_putstr("usage: ");
+		ft_putstr(av[0]);
+		ft_putendl(" <map-file>");
+	}
 	return (1);
 }

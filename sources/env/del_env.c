@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:28:06 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:32:23 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:39:00 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void					del_env(t_env **ep)
 	{
 		del_mouse(&(*ep)->ms);
 		del_keyboard(&(*ep)->kb);
-		del_plain(&(*ep)->pln);
+		del_plain(&(*ep)->pln, (*ep)->pln->h, (*ep)->pln->w);
 		del_image((*ep)->mlx, &(*ep)->img);
 		if ((*ep)->mlx && (*ep)->win)
 			mlx_destroy_window((*ep)->mlx, (*ep)->win);

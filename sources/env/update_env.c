@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:47:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 20:38:39 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:09:46 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void				draw_string(t_env *env, int move, unsigned int color,
 {
 	mlx_string_put(env->mlx, env->win, MENU_X_OFFSET, move, color, str);
 }
-
 
 static void				draw_menu(t_env *env)
 {

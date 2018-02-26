@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 23:37:58 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 01:33:17 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:02:54 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TRANSFORM_H
 
 # define DEFAULT_SCALE 10
+# define DEFAULT_Z_SCALE 1
 
 # define DEFAULT_ROTATION_X 0
 # define DEFAULT_ROTATION_Y 0
@@ -36,6 +37,7 @@ typedef struct			s_transf
 	t_vec3f				*pos;
 	t_vec3f				*scl;
 	t_vec3f				*rot;
+	float				z_scale;
 }						t_transf;
 
 t_transf				*get_transf(t_vec3f *pos, t_vec3f *scl, t_vec3f *rot);

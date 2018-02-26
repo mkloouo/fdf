@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 22:29:45 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 23:13:36 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 19:38:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_vec3i			***init_vec3i_data(t_image *img, t_plain *pln)
 		{
 			arr[i][j] = ortho_3d_to_2d(pln->va[i][j], pln);
 			set_vec3i(arr[i][j], x_cent + arr[i][j]->x + pln->tr->pos->x,
-					  y_cent + arr[i][j]->y + pln->tr->pos->y, arr[i][j]->z);
+						y_cent + arr[i][j]->y + pln->tr->pos->y, arr[i][j]->z);
 			j++;
 		}
 		i++;
@@ -73,15 +73,12 @@ void					put_plain_to_image(t_plain *pln, t_image *img)
 	else
 	{
 		i = 0;
-		while (i < pln->h)
+		while (i < pln->h && !(j = 0))
 		{
-			j = 0;
 			while (j < pln->w)
 			{
 				if (j < pln->w - 1)
 					draw_line(img, arr[i][j], arr[i][j + 1]);
-				if (i < pln->h - 1 && j < pln->w - 1)
-					draw_line(img, arr[i][j], arr[i + 1][j + 1]);
 				if (i < pln->h - 1)
 					draw_line(img, arr[i][j], arr[i + 1][j]);
 				j++;

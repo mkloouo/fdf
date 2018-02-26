@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:19:39 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 23:32:58 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:50:12 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #  define ESC_KC 53
 
-#  define Q_KC -1
+#  define Q_KC 12
 #  define W_KC 13
-#  define E_KC -1
+#  define E_KC 14
 #  define R_KC 15
 #  define T_KC -1
 #  define Y_KC -1
@@ -36,8 +36,8 @@
 #  define J_KC -1
 #  define K_KC -1
 #  define L_KC -1
-#  define Z_KC -1
-#  define X_KC -1
+#  define Z_KC 6
+#  define X_KC 7
 #  define C_KC -1
 #  define V_KC -1
 #  define B_KC -1
@@ -131,12 +131,28 @@
 
 # define MOVE_BUTTON(B) (MOVE_HOR(B) || MOVE_VER(B))
 
-# define ZOOM_IN(B) (B == NUM_PLUS_KC)
-# define EQUAL_BUTTON(B) (B == EQUAL_KC)
+# define ROTATE_X_P(B) (B == W_KC)
+# define ROTATE_X_M(B) (B == S_KC)
+# define ROTATE_Y_P(B) (B == D_KC)
+# define ROTATE_Y_M(B) (B == A_KC)
+# define ROTATE_Z_P(B) (B == E_KC)
+# define ROTATE_Z_M(B) (B == Q_KC)
 
+# define ROTATE_X(B) (ROTATE_X_P(B) || ROTATE_X_M(B))
+# define ROTATE_Y(B) (ROTATE_Y_P(B) || ROTATE_Y_M(B))
+# define ROTATE_Z(B) (ROTATE_Z_P(B) || ROTATE_Z_M(B))
+
+# define ROTATE(B) (ROTATE_X(B) || ROTATE_Y(B) || ROTATE_Z(B))
+
+# define SCALE_Z_M(B) (B == Z_KC)
+# define SCALE_Z_P(B) (B == X_KC)
+
+# define SCALE_Z(B) (SCALE_Z_P(B) || SCALE_Z_M(B))
+
+# define ZOOM_IN(B, S) (B == NUM_PLUS_KC || (B == EQUAL_KC && S))
 # define ZOOM_OUT(B) (B == NUM_MINUS_KC || B == MINUS_KC)
 
-# define ZOOM_BUTTON(B) (ZOOM_IN(B) || ZOOM_OUT(B) || EQUAL_BUTTON(B))
+# define ZOOM_BUTTON(B, S) (ZOOM_IN(B, S) || ZOOM_OUT(B))
 
 # define INFO_BUTTON(B) (B == I_KC)
 # define RESET_BUTTON(B) (B == R_KC)

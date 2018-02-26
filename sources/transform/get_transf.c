@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 02:25:04 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 04:38:52 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:02:35 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_transf				*get_transf(t_vec3f *pos, t_vec3f *scl, t_vec3f *rot)
 			rot = get_vec3f(DEFAULT_ROTATION_X, DEFAULT_ROTATION_Y,
 							DEFAULT_ROTATION_Z);
 		tr->rot = rot;
+		tr->z_scale = DEFAULT_Z_SCALE;
 	}
 	return (tr);
 }

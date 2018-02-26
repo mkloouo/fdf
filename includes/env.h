@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:12:20 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 05:35:22 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:01:20 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <plain.h>
 # include <mouse.h>
 # include <keyboard.h>
+
+# define MENU_X_OFFSET 10
 
 # define WIN_MIN_WIDTH 400
 # define WIN_MAX_WIDTH 1200
@@ -49,7 +51,5 @@ void					init_hooks(t_env *env);
 void					start_env(t_env *env);
 
 void					update_env(t_env *env);
-void					draw_string(t_env *env, t_vec2i *p, unsigned int color,
-									char *str);
 
 #endif

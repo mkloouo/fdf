@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:41:21 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 23:34:43 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:05:08 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,49 @@
 #include <keyboard.h>
 #include <stdio.h>
 
-static void				zoom_handler(t_keyboard *kb, t_env *env)
+static void				zoom_handler(t_env *env)
 {
 	float				val;
 	t_vec3f				v;
 
-	if (kb->shift_pressed && EQUAL_BUTTON(kb->ck))
-		val = (0.2);
-	else if (ZOOM_IN(kb->ck) || ZOOM_OUT(kb->ck))
-		val = ZOOM_IN(kb->ck) ? (0.2) : (-0.2);
-	else
-		return ;
+	val = ZOOM_IN(env->kb->ck, env->kb->shift_pressed) ? (0.2) : (-0.2);
 	set_vec3f(&v, val, val, val);
 	scale_plain(env->pln, &v);
 }
 
-static void				move_handler(t_keyboard *kb, t_env *env)
+static void				move_handler(t_env *env)
 {
+	int					btn;
+	int					shift_move;
 	t_vec3f				v;
-	int					add;
 
-	add = (kb->shift_pressed) ? 5 : 0;
-	if (MOVE_UP(kb->ck))
-		set_vec3f(&v, 0, -1 - add, 0);
-	if (MOVE_DOWN(kb->ck))
-		set_vec3f(&v, 0, 1 + add, 0);
-	if (MOVE_RIGHT(kb->ck))
-		set_vec3f(&v, 1 + add, 0, 0);
-	if (MOVE_LEFT(kb->ck))
-		set_vec3f(&v, -1 - add, 0, 0);
+	btn = env->kb->ck;
+	shift_move = (env->kb->shift_pressed) ? 5 : 1;
+	if (MOVE_VER(btn))
+		set_vec3f(&v, 0, (MOVE_UP(btn) ? (-1) : (1)) * shift_move, 0);
+	else if (MOVE_HOR(btn))
+		set_vec3f(&v, (MOVE_RIGHT(btn) ? (1) : (-1)) * shift_move, 0, 0);
 	translate_plain(env->pln, &v);
+}
+
+static void				z_scale_handler(t_env *env)
+{
+	env->pln->tr->z_scale += SCALE_Z_P(env->kb->ck) ? (0.5) : (-0.5);
+}
+
+static void				rotate_handler(t_env *env)
+{
+	int					btn;
+	t_vec3f				v;
+
+	btn = env->kb->ck;
+	if (ROTATE_X(btn))
+		set_vec3f(&v, (ROTATE_X_P(btn) ? (-1) : (1)), 0, 0);
+	else if (ROTATE_Y(btn))
+		set_vec3f(&v, 0, (ROTATE_Y_P(btn) ? (-1) : (1)), 0);
+	else if (ROTATE_Z(btn))
+		set_vec3f(&v, 0, 0, (ROTATE_Z_P(btn) ? (-1) : (1)));
+	rotate_plain(env->pln, &v);
 }
 
 void					key_handler(t_env *env, int event_type)
@@ -52,10 +65,14 @@ void					key_handler(t_env *env, int event_type)
 	{
 		if (QUIT_BUTTON(env->kb->ck))
 			del_env(&env);
-		else if (ZOOM_BUTTON(env->kb->ck))
-			zoom_handler(env->kb, env);
+		else if (ZOOM_BUTTON(env->kb->ck, env->kb->shift_pressed))
+			zoom_handler(env);
+		else if (SCALE_Z(env->kb->ck))
+			z_scale_handler(env);
+		else if (ROTATE(env->kb->ck))
+			rotate_handler(env);
 		else if (MOVE_BUTTON(env->kb->ck))
-			move_handler(env->kb, env);
+			move_handler(env);
 		else if (RESET_BUTTON(env->kb->ck))
 			reset_plain(env->pln);
 		else if (INFO_BUTTON(env->kb->ck))

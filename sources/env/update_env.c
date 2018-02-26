@@ -6,39 +6,37 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:47:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/25 23:23:28 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:38:39 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
 #include <mlx.h>
 
+static void				draw_string(t_env *env, int move, unsigned int color,
+									char *str)
+{
+	mlx_string_put(env->mlx, env->win, MENU_X_OFFSET, move, color, str);
+}
+
+
 static void				draw_menu(t_env *env)
 {
-	t_vec2i				p;
+	int					i;
 
-	set_vec2i(&p, 10, 10);
-	draw_string(env, &p, 0x004cb097, "Menu:");
-	set_vec2i(&p, 10, 30);
-	draw_string(env, &p, 0x0054b0b0, "Arrows to move");
-	set_vec2i(&p, 10, 50);
-	draw_string(env, &p, 0x0054b0b0, "WASDQE to rotate");
-	set_vec2i(&p, 10, 70);
-	draw_string(env, &p, 0x0054b0b0, "ZX to scale Z");
-	set_vec2i(&p, 10, 90);
-	draw_string(env, &p, 0x0054b0b0, "+/- to zoom");
-	set_vec2i(&p, 10, 110);
-	draw_string(env, &p, 0x0054b0b0, "R to reset");
-	set_vec2i(&p, 10, 130);
-	draw_string(env, &p, 0x0054b0b0, "I to get info");
-	set_vec2i(&p, 10, 150);
-	draw_string(env, &p, 0x0054b0b0, "Mouse LB to move");
-	set_vec2i(&p, 10, 170);
-	draw_string(env, &p, 0x0054b0b0, "Mouse RB to rotate");
-	set_vec2i(&p, 10, 190);
-	draw_string(env, &p, 0x0054b0b0, "Mouse Wheel Up/Down to zoom");
-	set_vec2i(&p, 10, 210);
-	draw_string(env, &p, 0x0054b0b0, "Esc to quit");
+	i = 0;
+	draw_string(env, i, 0x004cb097, "<Keyboard Controls>");
+	draw_string(env, (i += 20), 0x0054b0b0, "Arrows to move");
+	draw_string(env, (i += 15), 0x0054b0b0, "WASDQE to rotate");
+	draw_string(env, (i += 15), 0x0054b0b0, "ZX to scale Z");
+	draw_string(env, (i += 15), 0x0054b0b0, "+/- to zoom");
+	draw_string(env, (i += 15), 0x0054b0b0, "R to reset");
+	draw_string(env, (i += 15), 0x0054b0b0, "I to get info");
+	draw_string(env, (i += 20), 0x0054b0b0, "Esc to quit");
+	draw_string(env, (i += 20), 0x004cb097, "<Mouse Controls>");
+	draw_string(env, (i += 15), 0x0054b0b0, "Mouse LB to move");
+	draw_string(env, (i += 15), 0x0054b0b0, "Mouse RB to rotate");
+	draw_string(env, (i += 15), 0x0054b0b0, "Mouse Wheel Up/Down to zoom");
 }
 
 void					update_env(t_env *env)

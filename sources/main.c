@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/28 16:25:11 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:01:38 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int						main(int ac, char **av)
 	if (ac == 2 || ac == 3)
 	{
 		pln = plain_parse_file(av[ac - 1], ((ac == 3)
-											? (ft_atoi(av[1])) : DEFAULT_COLOR));
+						? (ft_atoi(av[1])) : DEFAULT_COLOR));
 		if (pln == NULL)
 			exit_error(av[0], "Invalid map");
 		env = init_env(pln, av[0]);

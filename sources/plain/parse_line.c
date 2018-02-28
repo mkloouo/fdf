@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/28 18:25:54 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:16:17 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,11 @@ t_plain					*parse_line(t_plain *pln, char *line, int row,
 		{
 			skip_char(&line, ' ', 0);
 			if ((pln->va[row][i] = get_vec3f(i - cent_x,
-				row - cent_y, ft_atof(line))))
-			{
-				pln->va[row][i++]->v = parse_color(line, color);
+				row - cent_y, ft_atof(line), parse_color(line, color))))
 				skip_char(&line, ' ', 1);
-			}
 			else
 				del_plain(&pln, row, i);
+			i++;
 		}
 	}
 	return (pln);

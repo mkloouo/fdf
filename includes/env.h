@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:12:20 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 20:01:20 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:37:08 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct			s_env
 
 t_env					*init_env(t_plain *pln, char *name);
 void					del_env(t_env **ep);
-void					print_env(t_env *env);
 
 void					parse_args(t_env *env, int ac, char **av);
 void					setup_window(t_env *env);

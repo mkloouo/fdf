@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 19:49:53 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/23 23:42:30 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:39:28 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ typedef struct			s_mouse
 
 t_mouse					*init_mouse(void);
 void					del_mouse(t_mouse **mp);
-void					print_mouse(t_mouse *ms);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 23:40:26 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:36:06 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:23:44 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void				skip_invalid_file(int fd)
 		ft_strdel(&line);
 }
 
-t_plain					*plain_parse_file(char *file)
+t_plain					*plain_parse_file(char *file, int color)
 {
 	t_plain				*pln;
 	char				*line;
@@ -35,7 +35,7 @@ t_plain					*plain_parse_file(char *file)
 		count = 0;
 		while ((r = get_next_line(fd, &line)) > 0)
 		{
-			if (!(pln = parse_line(pln, line, count++)))
+			if (!(pln = parse_line(pln, line, count++, color)))
 				break ;
 			ft_strdel(&line);
 		}

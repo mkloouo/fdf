@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:47 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:35:37 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:24:16 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int				validate_length(char *line, t_plain *pln)
 	return (len);
 }
 
-t_plain					*parse_line(t_plain *pln, char *line, int row)
+t_plain					*parse_line(t_plain *pln, char *line, int row, int color)
 {
 	int					len;
 	int					i;
@@ -68,7 +68,7 @@ t_plain					*parse_line(t_plain *pln, char *line, int row)
 				del_plain(&pln, row, i);
 				break ;
 			}
-			pln->va[row][i++]->v = parse_color(line);
+			pln->va[row][i++]->v = parse_color(line, color);
 			skip_char(&line, ' ', 1);
 		}
 	}

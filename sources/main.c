@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:40:51 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:25:11 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int						main(int ac, char **av)
 	t_plain				*pln;
 	t_env				*env;
 
-	if (ac == 2)
+	if (ac == 2 || ac == 3)
 	{
-		pln = plain_parse_file(av[1]);
+		pln = plain_parse_file(av[ac - 1], ((ac == 3)
+											? (ft_atoi(av[1])) : DEFAULT_COLOR));
 		if (pln == NULL)
 			exit_error(av[0], "Invalid map");
 		env = init_env(pln, av[0]);
@@ -52,7 +53,7 @@ int						main(int ac, char **av)
 	{
 		ft_putstr("usage: ");
 		ft_putstr(av[0]);
-		ft_putendl(" <map-file>");
+		ft_putendl(" [color] <map-file>");
 	}
 	return (1);
 }

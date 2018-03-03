@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:18:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:32:59 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:15:23 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <vector.h>
 # include <transform.h>
 
-# define DEFAULT_COLOR 0x00008080
+# define DEFAULT_COLOR 0x00FFFFFF
 
 /*
 ** Vector array
@@ -35,9 +35,10 @@ typedef struct			s_plain
 	char				*file;
 }						t_plain;
 
-t_plain					*plain_parse_file(char *file);
-t_plain					*parse_line(t_plain *pln, char *line, int row);
-int						parse_color(char *word);
+t_plain					*plain_parse_file(char *file, int color);
+t_plain					*parse_line(t_plain *pln, char *line, int row,
+int color);
+int						parse_color(char *word, int color);
 
 void					translate_plain(t_plain *pln, t_vec3f *pos);
 void					rotate_plain(t_plain *pln, t_vec3f *rot);
@@ -46,6 +47,5 @@ void					reset_plain(t_plain *pln);
 
 t_plain					*get_plain(char *file, int w, int h);
 void					del_plain(t_plain **pp, int row, int col);
-void					print_plain(t_plain *pln);
 
 #endif

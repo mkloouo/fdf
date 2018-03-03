@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 23:37:58 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:02:54 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:39:37 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,5 @@ t_transf				*get_transf(t_vec3f *pos, t_vec3f *scl, t_vec3f *rot);
 void					set_transf(t_transf *tr, t_vec3f *pos,
 									t_vec3f *scl, t_vec3f *rot);
 void					del_transf(t_transf **tp);
-
-void					print_transf(t_transf *tr);
 
 #endif

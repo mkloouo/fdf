@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:10:35 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/22 17:25:23 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:42:21 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ t_keyboard				*init_keyboard(void)
 
 	if ((kb = (t_keyboard*)ft_memalloc(sizeof(t_keyboard))))
 	{
-		kb->ctrl_pressed = 0;
 		kb->shift_pressed = 0;
-		kb->alt_pressed = 0;
 		kb->ck = 0;
 	}
 	return (kb);

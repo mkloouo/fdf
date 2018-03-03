@@ -6,13 +6,12 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:41:21 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:05:08 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:37:32 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <handlers.h>
 #include <keyboard.h>
-#include <stdio.h>
 
 static void				zoom_handler(t_env *env)
 {
@@ -75,10 +74,8 @@ void					key_handler(t_env *env, int event_type)
 			move_handler(env);
 		else if (RESET_BUTTON(env->kb->ck))
 			reset_plain(env->pln);
-		else if (INFO_BUTTON(env->kb->ck))
-			print_env(env);
 		else
-			printf("unknown key: %d\n", env->kb->ck);
+			return ;
 		update_env(env);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 20:47:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/26 21:09:46 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:13:36 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void				draw_menu(t_env *env)
 {
 	int					i;
 
-	i = 0;
+	i = 10;
 	draw_string(env, i, 0x004cb097, "<Keyboard Controls>");
 	draw_string(env, (i += 20), 0x0054b0b0, "Arrows to move");
 	draw_string(env, (i += 15), 0x0054b0b0, "WASDQE to rotate");
@@ -31,9 +31,9 @@ static void				draw_menu(t_env *env)
 	draw_string(env, (i += 15), 0x0054b0b0, "+/- to zoom");
 	draw_string(env, (i += 15), 0x0054b0b0, "R to reset");
 	draw_string(env, (i += 15), 0x0054b0b0, "I to get info");
-	draw_string(env, (i += 20), 0x0054b0b0, "Esc to quit");
+	draw_string(env, (i += 15), 0x0054b0b0, "Esc to quit");
 	draw_string(env, (i += 20), 0x004cb097, "<Mouse Controls>");
-	draw_string(env, (i += 15), 0x0054b0b0, "Mouse LB to move");
+	draw_string(env, (i += 20), 0x0054b0b0, "Mouse LB to move");
 	draw_string(env, (i += 15), 0x0054b0b0, "Mouse RB to rotate");
 	draw_string(env, (i += 15), 0x0054b0b0, "Mouse Wheel Up/Down to zoom");
 }

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:10:37 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/28 17:01:38 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/03/05 15:57:40 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void				exit_error(char *name, char *msg)
 {
-	if (msg && errno == 2)
+	if (msg && errno == 0)
 	{
 		ft_putstr(name);
 		ft_putstr(": ");

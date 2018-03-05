@@ -6,12 +6,13 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 17:11:41 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/24 00:11:27 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:08:21 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
 #include <libft.h>
+#include <errno.h>
 
 t_plain					*get_plain(char *file, int w, int h)
 {

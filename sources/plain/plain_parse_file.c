@@ -6,12 +6,13 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 23:40:26 by modnosum          #+#    #+#             */
-/*   Updated: 2018/02/28 16:23:44 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:05:13 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <plain.h>
 #include <libft.h>
+#include <errno.h>
 
 static void				skip_invalid_file(int fd)
 {
@@ -40,9 +41,9 @@ t_plain					*plain_parse_file(char *file, int color)
 			ft_strdel(&line);
 		}
 		skip_invalid_file(fd);
-		if (fd == -1 || r == -1)
+		if (fd == -1 || r == -1 || count == 0)
 			del_plain(&pln, pln->h, pln->w);
-		else
+		else if (!(errno = 0))
 			close_file(fd);
 	}
 	return (pln);

@@ -23,7 +23,7 @@ static void				draw_menu(t_env *env)
 {
 	int					i;
 
-	i = 10;
+	i = 15;
 	draw_string(env, i, 0x004cb097, "<Keyboard Controls>");
 	draw_string(env, (i += 20), 0x0054b0b0, "Arrows to move");
 	draw_string(env, (i += 15), 0x0054b0b0, "WASDQE to rotate");

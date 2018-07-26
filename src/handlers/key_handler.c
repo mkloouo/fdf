@@ -13,6 +13,8 @@
 #include <handlers.h>
 #include <keyboard.h>
 
+#include <stdio.h>
+
 static void				zoom_handler(t_env *env)
 {
 	float				val;
@@ -40,7 +42,7 @@ static void				move_handler(t_env *env)
 
 static void				z_scale_handler(t_env *env)
 {
-	env->pln->tr->z_scale += SCALE_Z_P(env->kb->ck) ? (0.5) : (-0.5);
+	env->pln->tr->z_scale += SCALE_Z_P(env->kb->ck) ? (0.1) : (-0.1);
 }
 
 static void				rotate_handler(t_env *env)
@@ -75,7 +77,10 @@ void					key_handler(t_env *env, int event_type)
 		else if (RESET_BUTTON(env->kb->ck))
 			reset_plain(env->pln);
 		else
-			return ;
+		  {
+		    printf("key code: %d\n", env->kb->ck);
+		    return ;
+		  }
 		update_env(env);
 	}
 }

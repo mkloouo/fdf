@@ -50,8 +50,10 @@
 #  define A_KC 97
 #  define S_KC 115
 #  define D_KC 100
-#  define Z_KC -1
-#  define X_KC -1
+#  define Z_KC 122
+#  define X_KC 120
+#  define MINUS_KC 27
+#  define EQUAL_KC 24
 
 #  define SHIFT_KC 65505
 
